@@ -1,0 +1,12 @@
+# NodeJs Modules
+/node_modules/
+
+# Sublime files
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+
+# Logs
+*.log

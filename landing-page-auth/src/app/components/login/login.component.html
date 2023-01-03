@@ -1,0 +1,47 @@
+<section class="ftco-section" *ngIf="!isLogged()" style="background-image: url('assets/img/fondo-login.jpg')">
+    <div class="container">
+        <!-- <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Login</h2>
+            </div>
+        </div> -->
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="icon d-flex align-items-center justify-content-center" style="background-color: #e03a3c !important; color: #fff">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <h3 class="text-center mb-4">Login</h3>
+                    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submit(loginForm.controls['email'].value, loginForm.controls['password'].value)">
+                        <div class="form-group" *ngIf="errorMessage != null">
+                            <div class="alert alert-danger">{{ errorMessage }}</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control rounded-left" [class.is-invalid]="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" placeholder="Correo *" [formControl]="loginForm.controls['email']" aria-describedby="validationEmailFeedback" required>
+                            <div id="validationEmailFeedback" class="invalid-feedback">
+                                Proporcione un correo electrónico valido
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <input type="password" name="password" class="form-control rounded-left" placeholder="Contraseña *" [formControl]="loginForm.controls['password']" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3" style="background-color: #e03a3c !important" [disabled]="loginForm.invalid">Ingresar</button>
+                        </div>
+                    <!-- <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">Remember Me
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Forgot Password</a>
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

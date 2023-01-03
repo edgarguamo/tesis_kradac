@@ -1,0 +1,31 @@
+<!-- ======= Grafica Section ======= -->
+<section id="grafica_{{numGrafico}}" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>{{ titleChart }}</h2>
+        </div>
+        <div class="row" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 100%;">
+            <div class="col-lg-12 entries">
+                <article class="entry">
+                    <div class="entry-content">
+                        <div style="display: block;">
+                            <canvas
+                                baseChart
+                                [chartType]="'line'"
+                                [legend]="true"
+                                [datasets]="chartData"
+                                [labels]="chartLabels"
+                                [options]="chartOptions"
+                            >
+                            </canvas>
+                        </div>    
+                        <!-- <div class="read-more">
+                            <a href="blog-single.html">Read More</a>
+                        </div> -->
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Grafica Section -->
