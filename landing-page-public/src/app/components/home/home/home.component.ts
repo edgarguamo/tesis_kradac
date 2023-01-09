@@ -8,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
 	listTitles: string[] = [
-		'Grafica 1',
-		'Grafica 2',
-		'Grafica 3'
+		'Grafica 1'
 	];
 
 	constructor() { }

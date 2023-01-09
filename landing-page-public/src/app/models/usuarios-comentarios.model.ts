@@ -4,8 +4,8 @@ export class UsuariosComentarios {
 	public FechaHoraRegistro: string;
 	//public Fecha: string;
 	//public Hora: string;
-	public CalificacionClientes: number;
-	public CalificacionChoferes: number;
+	public CalificacionClientes: string;
+	public CalificacionChoferes: string;
 	public ComentarioCliente: string;
 	public ComentarioConductor: string;
 	public ValoracionCliente: number;

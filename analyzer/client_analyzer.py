@@ -37,11 +37,11 @@ def train_analyzer(train_text, test_text, train_labels, test_labels, sentences):
       lista_final_SVC_cliente.append(diccionario)
   data_SVC_cliente = pd.DataFrame.from_records(lista_final_SVC_cliente)
 
-  df_predicciones = pd.DataFrame(predicciones, columns=['predicciones'])
+  df_predicciones = pd.DataFrame(predicciones, columns=['CalificacionClientes'])
 
-  df_predicciones.loc[df_predicciones.predicciones == 0, 'predicciones'] = 'Negativo'
-  df_predicciones.loc[df_predicciones.predicciones == 1, 'predicciones'] = 'Neutral'
-  df_predicciones.loc[df_predicciones.predicciones == 2, 'predicciones'] =  'Positivo'
+  df_predicciones.loc[df_predicciones.CalificacionClientes == 0, 'CalificacionClientes'] = 'Negativo'
+  df_predicciones.loc[df_predicciones.CalificacionClientes == 1, 'CalificacionClientes'] = 'Neutral'
+  df_predicciones.loc[df_predicciones.CalificacionClientes == 2, 'CalificacionClientes'] =  'Positivo'
   return df_predicciones
   '''
   print(f"Accuracy: {accuracy:.4%}")

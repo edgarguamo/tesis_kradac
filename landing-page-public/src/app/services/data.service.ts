@@ -41,6 +41,14 @@ export class DataService {
 				catchError(this.handleError)
 			);
 	}
+	
+	getUsuarioComentarioColumna(nombreColumna: string): Observable<UsuariosComentarios> {
+		return this.http.get<UsuariosComentarios>(this.apiURL + '/' + nombreColumna)
+			.pipe(
+				retry(1),
+				catchError(this.handleError)
+			);
+	}
 
 	// Error handling
 	handleError(error: any): Observable<never> {

@@ -8,8 +8,8 @@ import db_conection
 
 def export_json():
     client = db_conection.db_conect()
-    db = client.tesis
-    collection = db.test2
+    db = client.test
+    collection = db.usuarios_comentarios
     cursor = collection.find()
     mongo_docs = list(cursor)
     mongo_docs = mongo_docs[50:51]

@@ -7,6 +7,7 @@ exports.listAll = function(req, res) {
 				status: "error", 
 				message: err.message
 			});
+		
 		res.status(200).json(lista);
 	});
 }
