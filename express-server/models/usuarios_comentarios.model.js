@@ -22,13 +22,6 @@ var UsuariosComentariosSchema = new Schema({
 //Calificacion en funcion de la fecha 
 
 UsuariosComentariosSchema.statics.getAll = function(cb) {
-	
-    /*
-    this.aggregate([
-        {"$group" : {_id: "$CalificacionChoferes", count:{$sum:1}}}
-        
-    ], cb);
-    */
     this.find({FechaHoraRegistro: new RegExp('2021-01-01', 'i')}, cb);
 }
 
@@ -40,11 +33,22 @@ UsuariosComentariosSchema.statics.findByIdRegistro = function(IdRegistro, cb) {
 	this.findOne({IdRegistro: IdRegistro}, cb);
 }
 
-UsuariosComentariosSchema.statics.filter = function(cb) {
-	this.find({}, 
-        FechaHoraRegistro = "/^",
-        cb);
-}
+UsuariosComentariosSchema.statics.filter = function (
+  FechaHoraRegistro,
+  ValoracionClientes,
+  ValoracionConductores,
+  CalificacionClientes,
+  CalificacionChoferes,
+  cb
+) {
+  this.find({
+    FechaHoraRegistro: new RegExp(FechaHoraRegistro,'i'),
+    ValoracionClientes: ValoracionClientes,
+    ValoracionConductores: ValoracionConductores,
+    CalificacionClientes: CalificacionClientes,
+    CalificacionChoferes:  CalificacionChoferes
+  }, cb);
+};
 
 
 module.exports = mongoose.model('Usuarios_Comentarios', UsuariosComentariosSchema);

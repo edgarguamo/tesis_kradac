@@ -30,3 +30,50 @@ exports.getItem = function(req, res){
     	}
     });
 }
+
+exports.getMyQuery = function (req, res) {
+  Usuarios_Comentarios.filter(
+    req.params.anio,
+    req.params.mes,
+    req.params.dia,
+    req.params.hora,
+    req.params.vCliente,
+    req.params.vConductor,
+	req.params.cCliente,
+	req.params.cConductor,
+    (err, obj) => {
+      if (err)
+        return res.status(500).send({
+          status: "error",
+          message: err.message,
+        });
+      if (obj) {
+        res.status(200).json(obj);
+      } else {
+        return res.status(404).send({
+          status: "not found",
+          message: "No se pudo realizar la consulta",
+        });
+      }
+    }
+  );
+};
+
+/*6
+exports.getMyQuery = function (req, res) {
+	Usuarios_Comentarios.filter(
+	  req.params.anio,
+	  req.params.mes,
+	  req.params.dia,
+	  req.params.hora,
+	  req.params.vCliente,
+	  req.params.vConductor,
+	  req.params.cCliente,
+	  req.params.cConductor,
+	  (err, obj) => {
+		res.send('peticion correcta')
+		console.log('eso tilin');
+	  }
+	);
+  };
+*/

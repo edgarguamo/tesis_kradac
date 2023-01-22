@@ -39,7 +39,7 @@ export class GraficaComponent implements OnInit {
 	chartOptions = {
 		responsive: true
 	};
-	titleChart = 'pipo'
+	titleChart = 'Distribución de clientes en el mes de enero'
 	constructor(private dataService: DataService) { }
 
 	ngOnInit(): void {
@@ -47,7 +47,6 @@ export class GraficaComponent implements OnInit {
 			data => this.setListDataset(data)
 		);
 	}
-
 	private setListDataset(data: UsuariosComentarios[]): void {
 		this.listDataset = data;
 		/*
@@ -85,7 +84,6 @@ export class GraficaComponent implements OnInit {
 			defaultquery[2][0]
 		];
 		this.titleChart = 'Percepción de comentarios en el mes de Enero 2021'
-		
 	}
 
 }

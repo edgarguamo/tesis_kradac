@@ -23,6 +23,8 @@ import { TeamComponent } from './components/home/section/team/team.component';
 import { ContactComponent } from './components/home/section/contact/contact.component';
 import { GraficaComponent } from './components/home/section/grafica/grafica.component';
 import { DataService } from './services/data.service';
+//import {MatButtonModule} from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -49,6 +51,7 @@ import { DataService } from './services/data.service';
 		HttpClientModule,
 		AppRoutingModule,
 		SwiperModule,
+		ReactiveFormsModule,
 		ChartsModule
 	],
 	providers: [
