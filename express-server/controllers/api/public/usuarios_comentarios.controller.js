@@ -56,6 +56,21 @@ exports.getMyQuery = function (req, res) {
   );
 };
 
+exports.listAllTest = function(req, res) {
+	console.log((req.query));
+	Usuarios_Comentarios.getAllTest(req.query, (err, lista) => {
+		if (err){ 
+            console.log(Object.keys(req.query));
+			return res.status(500).send({
+				status: "error de mi test", 
+				message: err.message
+			});
+			
+		}
+		res.status(200).json(lista);
+	});
+}
+
 /*
 exports.getMyQuery = function (req, res) {
 	Usuarios_Comentarios.filter(

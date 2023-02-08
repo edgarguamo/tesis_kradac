@@ -25,6 +25,19 @@ import { GraficaComponent } from './components/home/section/grafica/grafica.comp
 import { DataService } from './services/data.service';
 //import {MatButtonModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { FormgraphComponent } from './components/home/section/formgraph/formgraph.component';
+import { MatCardModule } from '@angular/material/card';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table'; 
+
 
 @NgModule({
 	declarations: [
@@ -44,19 +57,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		FaqComponent,
 		TeamComponent,
 		ContactComponent,
-		GraficaComponent
+		GraficaComponent,
+		FormgraphComponent,
+		
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		HttpClientModule,
 		AppRoutingModule,
 		SwiperModule,
 		ReactiveFormsModule,
+		MatButtonModule,
+		MatInputModule,
+		MatDatepickerModule,
+		MatCardModule,
+		MatButtonToggleModule,
+		MatNativeDateModule,
+		MatDialogModule,
+		MatFormFieldModule,
 		ChartsModule
+
 	],
 	providers: [
 		DataService
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	
 })
 export class AppModule { }

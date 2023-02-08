@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var UsuariosComentariosController = require('../../../controllers/api/public/usuarios_comentarios.controller');
 
-router.get('/', UsuariosComentariosController.listAll);
+router.get('/', UsuariosComentariosController.listAllTest);
 router.get('/:id', UsuariosComentariosController.getItem);
 router.get('/:FechaHoraRegistro/:ValoracionClientes/:ValoracionConductores/:CalificacionClientes/:CalificacionChoferes', UsuariosComentariosController.getMyQuery);
+
 
 /*6
 router.get('/:anio/:mes/:dia/:hora/:vCliente/:vConductor/:cCliente/:cConductor', (req, res) =>{
