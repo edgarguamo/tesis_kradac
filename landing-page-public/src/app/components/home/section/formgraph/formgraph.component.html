@@ -1,0 +1,62 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<div class="container">
+  <h1>Filtro de Gráfica</h1>
+<br><br>
+<form #fromgraph="ngForm" (ngSubmit)="formSend()">
+  <select name="select"  ng-model="userQuery.TipoConsulta" [(ngModel)]="userQuery.TipoConsulta">
+    <option value="3"  ng-selected="userQuery.TipoConsulta">Por Contenido</option>
+    <option value="2">Por Usuario</option>
+  </select>
+	
+	<br><br>
+  <!--
+	<input type="text" name="raza" placeholder="Raza de mascota" [(ngModel)]="userQuery.">
+	<br><br>
+	<input type="text" name="edad" placeholder="Calificación Clientes" [(ngModel)]="userQuery.CalificacionClientes">
+	<br><br>
+  <input type="number" name="edad" placeholder="Calificación Choferes" [(ngModel)]="userQuery.CalificacionChoferes">
+	<br><br>
+  -->
+  
+  <input type="date" name="fechainicio" id="fechainicio" placeholder="Ej: 2021-01-01" [(ngModel)]="userQuery.FechaHoraRegistro" min="2021-01-01" max="2022-12-30">
+  <br><br>
+  <input type="date" name="fechafin" id="fechafin" placeholder="Ej: 2022-12-31" [(ngModel)]="userQuery.FechaHoraFin" min="2021-01-02" max="2022-12-31">
+  <br><br>
+
+ 	<button type="submit">Guardar</button>
+</form>
+</div>
+
+<!--
+<div class="container">
+
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Filtro de datos</mat-card-title>
+    </mat-card-header>
+    <div class="example-button-row">
+      <button mat-raised-button>Por Contenido</button>
+      <button mat-raised-button>Por Rango de Valores</button>
+      <button mat-raised-button>Por Rango de Fecha</button>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-form-field appearance="fill">  
+        <h6>ID Usuario:</h6>
+        <input matInput />
+      </mat-form-field>
+    </mat-form-field>
+    <div>
+      <div>
+        <mat-label>Ingrese fecha de búsqueda</mat-label>
+      </div>
+      <input type="date" name="fecha" min="2021-01-02" max="2022-12-31">  
+
+    </div>
+    <div><button mat-raised-button color="accent">Filtrar</button></div>
+  </mat-card>
+</div>
+-->

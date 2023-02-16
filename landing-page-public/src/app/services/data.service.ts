@@ -49,6 +49,14 @@ export class DataService {
 				catchError(this.handleError)
 			);
 	}
+	getUsuariosComentariosConsulta(tipoConsulta: string, fechaInicio: string, fechaFin: string): Observable<UsuariosComentarios[]> {
+		//console.log(this.apiURL+'/?TipoConsulta='+tipoConsulta+'&FechaInicio='+fechaInicio+'&FechaFin=' + fechaFin);
+		return this.http.get<UsuariosComentarios[]>(this.apiURL+'/?TipoConsulta='+tipoConsulta+'&FechaInicio='+fechaInicio+'&FechaFin=' + fechaFin)
+			.pipe(
+				retry(1),
+				catchError(this.handleError)
+			);
+	}
 
 	// Error handling
 	handleError(error: any): Observable<never> {

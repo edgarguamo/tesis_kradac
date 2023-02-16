@@ -1,34 +1,95 @@
 <!-- ======= Grafica Section ======= -->
-<section id="grafica_{{numGrafico}}" class="blog">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <h2>{{ titleChart }}</h2>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 100%;">
-            <div class="col-lg-12 entries">
 
-                <article class="entry">
-                    <div class ='row'>
-                    <div class="entry-content">
-                        <div style="display: grid;">
-                            <canvas
-                                baseChart
-                                [chartType]="'bar'"
-                                [legend]="true"
-                                [datasets]="chartData"
-                                [labels]="chartLabels"
-                                [options]="chartOptions"
-                            >
-                            </canvas>
-                        </div>    
-                    </div>
-                    </div>
-                    <div style="display: grid;">
-                        <a href="blog-single.html">Read More</a>        
-                    </div>
-                </article>
+<section id="grafica_{{ numGrafico }}" class="blog">
+  <div class="container">
+    <div class="box-1" data-aos="fade-up">
+      <div class="section-title">
+        <h2>{{ titleChart }}</h2>
+      </div>
+      <div
+        class="row"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        style="position: relative; height: 100%"
+      >
+        <div class="col-lg-12 entries">
+          <article class="entry">
+            <div class="row">
+              <div class="entry-content">
+                <div style="display: grid">
+                  <canvas
+                    baseChart
+                    [chartType]="chartType"
+                    [legend]="true"
+                    [datasets]="chartData"
+                    
+                    [options]="chartOptions"
+                  >
+                  </canvas>
+                </div>
+              </div>
             </div>
+          </article>
         </div>
+      </div>
     </div>
+    <!-- Formulario -->
+    <div class="box-2">
+      <h5>Filtrar por:</h5>
+      <form #fromgraph="ngForm" (ngSubmit)="ngOnSubmit()">
+        <span style="margin: 0px 10px 0px 0px;"><i class="fas fa-search"></i></span>
+        <select
+          name="select"
+          ng-model="userQuery.TipoConsulta"
+          [(ngModel)]="userQuery.TipoConsulta"
+        >
+          <option value="3" ng-selected="userQuery.TipoConsulta">
+            Por Percepción
+          </option>
+          <option value="2">Por Calificación</option>
+          
+        </select>
+          <label for="tipografica">Tipo de gráfica</label>
+          <br/>
+        <select
+          name="select"
+          ng-model="userQuery.TipoConsulta"
+          [(ngModel)]="userQuery.TipoConsulta"
+        >
+          <option name="tipografica" value="1" ng-selected="userQuery.TipoConsulta">
+          Barras
+          </option>
+          <option value="2">Lineas</option>
+          <option value="3">Polar</option>
+          <option value="4">Scatter</option>
+        </select>
+        <br /><br />
+        <label for="date">Fecha inicial</label> <br/>
+        <input
+          type="date"
+          name="fechainicio"
+          id="fechainicio"
+          placeholder="Ej: 2021-01-01"
+          [(ngModel)]="userQuery.FechaHoraRegistro"
+          min="2021-01-01"
+          max="2022-12-30"
+        />
+        <br /><br />
+        <label for="date">Fecha Final</label> <br/>
+        <input
+          type="date"
+          name="fechafin"
+          id="fechafin"
+          placeholder="Ej: 2022-12-31"
+          [(ngModel)]="userQuery.FechaHoraFin"
+          min="2021-01-02"
+          max="2022-12-31"
+        />
+        <br /><br />
+
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
 </section>
 <!-- End Grafica Section -->

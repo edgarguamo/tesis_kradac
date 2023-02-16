@@ -76,6 +76,7 @@ import {MatTableModule} from '@angular/material/table';
 		MatNativeDateModule,
 		MatDialogModule,
 		MatFormFieldModule,
+		FormsModule,
 		ChartsModule
 
 	],

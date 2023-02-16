@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    font-family: 'Roboto';
+  }
+  
+  .box-1 {
+    width: 80%;
+    
+  }
+  
+  .box-2 {
+
+    border-color: black;
+    border-width: 3px;
+    border-style: solid; 
+    margin: 100px 30px 30px 30px;
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+    height: 325px;
+    max-height: 340px;
+    font-family: "Roboto";
+    border-radius: 5%;
+  }
+  .box-2 input
+  input[type="radio"] + label,
+  input[type="checkbox"] + label:before,
+  select option,
+  select{
+
+    border: 1px solid white;
+    padding: 5px 10px;
+    font-family: "Roboto";
+    line-height: 1.4;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    -webkit-transition: 0.35s ease-in-out;
+    -moz-transition: 0.35s ease-in-out;
+    -o-transition: 0.35s ease-in-out;
+    transition: 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+  }
+  
