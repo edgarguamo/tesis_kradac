@@ -39,7 +39,7 @@ export class GraficaComponent {
   ];
   chartType = 'bar';
   fecha_inical = '1 de Enero del 2021';
-  fecha_final = '2 de Enero del 2021';
+  fecha_final = '31 de Febrero del 2021';
 
   chartLabels = ['January', 'February', 'March', 'April'];
 
@@ -47,6 +47,24 @@ export class GraficaComponent {
     responsive: true,
   };
   titleChart = 'Distribución de clientes en el mes de enero';
+  // Inicio grafica 1
+  positivo = '1';
+  negativo = '2';
+  neutral = '3';
+  //Fin gráfica 1
+  // Grafica 2
+  valoracion_0 = '10';
+  valoracion_1 = '15';
+  valoracion_2 = '20';
+  valoracion_3 = '25';
+  valoracion_4 = '10';
+  valoracion_5 = '10';
+  sh = 1;
+  //Fin gráfia 2
+  total_comentarios = 1311234;
+
+  average_notes = '3.5';
+  // Fin declaración de variables
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
@@ -63,7 +81,7 @@ export class GraficaComponent {
         this.userQuery.FechaHoraFin
       )
       .subscribe((data) => this.setListDataset(data));
-    this.tipoGrafica(this.userQuery.TipoConsulta);
+    this.tipoGrafica(this.userQuery.TipoGrafica);
     console.log('El formulario fue enviado y los datos son: ', this.userQuery);
   }
   private tipoGrafica(seleccion: string): void {
@@ -103,8 +121,83 @@ export class GraficaComponent {
         {}
       )
     );
-    console.log(defaultquery);
+    let valorQuery = Object.entries(
+      this.listDataset.reduce(
+        (aux, d) => (
+          aux[d.ValoracionClientes]
+            ? (aux[d.ValoracionClientes] += 1)
+            : (aux[d.ValoracionClientes] = 1),
+          aux
+        ),
+        {}
+      )
+    );
+    /* 
+    Clasificación de los comentarios por tipo 
+    */
+    console.log(valorQuery);
+    var total =
+      (defaultquery[0][1] as number) +
+      (defaultquery[1][1] as number) +
+      (defaultquery[2][1] as number);
+    this.negativo = (((defaultquery[0][1] as number) * 100) / total).toFixed(2);
+    this.neutral = (((defaultquery[1][1] as number) * 100) / total).toFixed(2);
+    this.positivo = (((defaultquery[2][1] as number) * 100) / total).toFixed(2);
 
+    var total_calificacion =
+      (valorQuery[0][1] as number) +
+      (valorQuery[1][1] as number) +
+      (valorQuery[2][1] as number) +
+      (valorQuery[3][1] as number) +
+      (valorQuery[4][1] as number) +
+      (valorQuery[5][1] as number);
+    this.total_comentarios = total;
+
+    /* 
+      
+      Media de calificaciones
+      */
+    this.average_notes = (
+      ((valorQuery[0][1] as number) * 0 +
+        (valorQuery[1][1] as number) * 1 +
+        (valorQuery[2][1] as number) * 2 +
+        (valorQuery[3][1] as number) * 3 +
+        (valorQuery[4][1] as number) * 4 +
+        (valorQuery[5][1] as number) * 5) /
+      total_calificacion
+    ).toFixed(2);
+
+    /*
+       Valoración de los usuarios 
+      */
+    console.log(this.average_notes);
+    this.valoracion_0 = (
+      ((valorQuery[0][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    this.valoracion_1 = (
+      ((valorQuery[1][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    this.valoracion_2 = (
+      ((valorQuery[2][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    this.valoracion_3 = (
+      ((valorQuery[3][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    //this.valoracion_3 = '12.3';
+    this.valoracion_4 = (
+      ((valorQuery[4][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    this.valoracion_5 = (
+      ((valorQuery[5][1] as number) * 100) /
+      total_calificacion
+    ).toFixed(2);
+    console.log(defaultquery);
+    console.log(total);
     this.chartData = [
       {
         data: [defaultquery[0][1] as number],
@@ -138,11 +231,24 @@ export class GraficaComponent {
       }
     }
   }
+
+  //Obtener el título  para las gráficas
+
   private titleGraph(fechaInicial: string, fechaFinal: string): void {
     console.log(fechaInicial.substring(5, 7));
-    var mes_inicial   = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date().setMonth(parseInt(fechaInicial.substring(5, 7))-1));
-    var mes_final   = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date().setMonth(parseInt(fechaFinal.substring(5, 7))-1));
-    this.fecha_inical = `${fechaInicial.substring(8, 10)} de ${mes_inicial} del ${fechaInicial.substring(0, 4)}`
-    this.fecha_final = `${fechaFinal.substring(8, 10)} de ${mes_final} del ${fechaFinal.substring(0, 4)}`
+    var mes_inicial = new Intl.DateTimeFormat('es-ES', {
+      month: 'long',
+    }).format(new Date().setMonth(parseInt(fechaInicial.substring(5, 7)) - 1));
+    var mes_final = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(
+      new Date().setMonth(parseInt(fechaFinal.substring(5, 7)) - 1)
+    );
+    this.fecha_inical = `${fechaInicial.substring(
+      8,
+      10
+    )} de ${mes_inicial} del ${fechaInicial.substring(0, 4)}`;
+    this.fecha_final = `${fechaFinal.substring(
+      8,
+      10
+    )} de ${mes_final} del ${fechaFinal.substring(0, 4)}`;
   }
 }

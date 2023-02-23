@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { SwiperModule } from 'swiper/angular';
 import { ChartsModule } from 'ng2-charts';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/base/header/header.component';
@@ -77,7 +76,7 @@ import {MatTableModule} from '@angular/material/table';
 		MatDialogModule,
 		MatFormFieldModule,
 		FormsModule,
-		ChartsModule
+		ChartsModule,
 
 	],
 	providers: [

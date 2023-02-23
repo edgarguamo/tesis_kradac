@@ -9,8 +9,8 @@ export class UsuariosComentarios {
 	//public Hora: string;
 	public CalificacionClientes: string;
 	public CalificacionChoferes: string;
-	public ComentarioCliente: string;
-	public ComentarioConductor: string;
-	public ValoracionCliente: number;
-	public ValoracionConductor: number;
+	public ComentarioClientes: string;
+	public ComentarioConductores: string;
+	public ValoracionClientes: number;
+	public ValoracionConductores: number;
 }

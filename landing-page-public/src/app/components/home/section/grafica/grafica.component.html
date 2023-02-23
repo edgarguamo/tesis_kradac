@@ -1,6 +1,266 @@
-<!-- ======= Grafica Section ======= -->
+<!-- ======= Pricing Section ======= -->
+<section>
+  <label>
+    <input [value]="1" [(ngModel)]="sh" name="sh" type="radio" /> General
+  </label>
+  <label>
+    <input [value]="0" [(ngModel)]="sh" name="sh" type="radio" /> Administrador
+  </label>
+</section>
+<section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
+  <div class="container2" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Percepción de los Usuarios</h2>
+      <h4>La media de los usuarios piensan que el aplicativo es:</h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="box"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style="font-size: 44px"
+        >
+          <h3>Negativo</h3>
+          <i class="fas fa-sad-cry" style="font-size: 250px"></i>
+          <h4>{{ negativo }}</h4>
+        </div>
+      </div>
 
-<section id="grafica_{{ numGrafico }}" class="blog">
+      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+        <div class="box featured" data-aos="fade-up" data-aos-delay="200">
+          <h3>Neutral</h3>
+          <i class="fas fa-meh" style="font-size: 250px"></i>
+
+          <h4>{{ neutral }}</h4>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+          <h3>Positivo</h3>
+          <i class="fas fa-smile" style="font-size: 250px"></i>
+          <h4>{{ positivo }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Counts reviews -->
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container4" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Medía de Calificación</h2>
+    </div>
+    <div class="row average">
+      <div class="average">
+        <h4>
+          De los <b>131546 </b> comentarios analizados se ha puede observar que
+          la media de calificacines dejadas por los usuarios
+        </h4>
+        <p href="#">
+          {{ average_notes }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Services Section -->
+
+<!-- End Pricing Section -->
+<section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
+  <div class="container2" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Calificación del aplicativo</h2>
+      <h4>
+        Las personas emplean las siguientes palabras para describir el servicio
+        al momento de calificarlo
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-12">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="far fa-star" style="font-size: 150px"></i>
+          <h4>{{ valoracion_0 }} %</h4>
+          <span class="bad badextendedCero">
+            <label>
+              Estas personas no han brindado su perspectiva del aplicativo, por
+              favor no olvides ingresar tus comentarios al finalizar el servicio
+            </label>
+          </span>
+          <span class="Neutral badextendedCero"> </span>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star" style="font-size: 150px"></i>
+          <h4>{{ valoracion_1 }} %</h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Canceló Solicitud</label>
+            </span>
+            <span class="chip bad">
+              <label>Actitud Desagradable</label>
+            </span>
+            <span class="chip bad">
+              <label>Cobro Inadecuado</label>
+            </span>
+            <span class="chip bad">
+              <label>Mal estado del vehículo</label>
+            </span>
+            <span class="bad badextended">
+              <label>Uso del Teléfono</label>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star" style="font-size: 75px"></i>
+          <br />
+          <i class="fas fa-star" style="font-size: 75px"></i>
+          <h4>{{ valoracion_2 }} %</h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Canceló Solicitud</label>
+            </span>
+            <span class="chip bad">
+              <label>Actitud Desagradable</label>
+            </span>
+            <span class="chip bad">
+              <label>Cobro Inadecuado</label>
+            </span>
+            <span class="chip bad">
+              <label>Mal estado del vehículo</label>
+            </span>
+            <span class="bad badextended">
+              <label>Uso del Teléfono</label>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+          <br />
+          <i class="fas fa-star" style="font-size: 75px"></i>
+          <h4>{{ valoracion_3 }} %</h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Mejor Empleo del mapa</label>
+            </span>
+            <span class="chip bad">
+              <label>Que cobre lo justo</label>
+            </span>
+            <span class="chip bad">
+              <label>Mejorar la Puntualidad</label>
+            </span>
+            <span class="chip bad">
+              <label>Limpieza de Vehículo</label>
+            </span>
+            <span class="bad badextended">
+              <label>Trato al Cliente</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-md-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="200">
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 10px 5px 0px"
+          ></i>
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 0px 5px 10px"
+          ></i>
+          <br />
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+
+          <h4>{{ valoracion_4 }} %</h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Mejore la Música/Volumen</label>
+            </span>
+            <span class="chip bad">
+              <label>Presentación Personal</label>
+            </span>
+            <span class="chip bad">
+              <label>Evitar el Claxon</label>
+            </span>
+            <span class="chip bad">
+              <label>Tener Cambio para cobrar</label>
+            </span>
+            <span class="bad badextended">
+              <label>Wifi/Carga de Celulares</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-lg-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+          <i
+            class="fas fa-star"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <br />
+          <i class="fas fa-star" style="font-size: 50px"></i>
+          <br />
+          <i
+            class="fas fa-star"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <h4>{{ valoracion_5 }} %</h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Atento y Cordial</label>
+            </span>
+            <span class="chip bad">
+              <label>Viaje Agradable</label>
+            </span>
+            <span class="chip bad">
+              <label>Siempre llega a tiempo</label>
+            </span>
+            <span class="chip bad">
+              <label>Wifi/Carga de Celulares</label>
+            </span>
+            <span class="bad badextended">
+              <label>Servicio de Llamadas</label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Final caliifación-->
+<!-- ======= Grafica Section ======= -->
+<section id="grafica_{{ numGrafico }}" class="blog" *ngIf="sh == 1">
   <div class="container">
     <div class="box-1" data-aos="fade-up">
       <div class="section-title">
@@ -22,7 +282,6 @@
                     [chartType]="chartType"
                     [legend]="true"
                     [datasets]="chartData"
-                    
                     [options]="chartOptions"
                   >
                   </canvas>
@@ -35,9 +294,11 @@
     </div>
     <!-- Formulario -->
     <div class="box-2">
-      <h5>Filtrar por:</h5>
+      <h5><b>Filtrar por:</b></h5>
       <form #fromgraph="ngForm" (ngSubmit)="ngOnSubmit()">
-        <span style="margin: 0px 10px 0px 0px;"><i class="fas fa-search"></i></span>
+        <span style="margin: 0px 10px 0px 0px"
+          ><i class="fas fa-search" style="color: white"></i
+        ></span>
         <select
           name="select"
           ng-model="userQuery.TipoConsulta"
@@ -47,24 +308,31 @@
             Por Percepción
           </option>
           <option value="2">Por Calificación</option>
-          
         </select>
-          <label for="tipografica">Tipo de gráfica</label>
-          <br/>
+
+        <label for="tipografica"
+          ><br />
+          <b>Tipo de gráfica</b></label
+        >
+        <br />
+        <span style="margin: 0px 10px 0px 0px"
+          ><i class="far fa-chart-bar" style="color: white"></i
+        ></span>
         <select
           name="select"
           ng-model="userQuery.TipoConsulta"
-          [(ngModel)]="userQuery.TipoConsulta"
+          [(ngModel)]="userQuery.TipoGrafica"
         >
-          <option name="tipografica" value="1" ng-selected="userQuery.TipoConsulta">
-          Barras
-          </option>
+          <option value="1">Barras</option>
           <option value="2">Lineas</option>
           <option value="3">Polar</option>
           <option value="4">Scatter</option>
         </select>
         <br /><br />
-        <label for="date">Fecha inicial</label> <br/>
+        <label for="date"><b>Fecha inicial</b></label> <br />
+        <span style="margin: 0px 10px 0px 0px">
+          <i class="far fa-calendar-alt" style="color: white"></i
+        ></span>
         <input
           type="date"
           name="fechainicio"
@@ -72,10 +340,13 @@
           placeholder="Ej: 2021-01-01"
           [(ngModel)]="userQuery.FechaHoraRegistro"
           min="2021-01-01"
-          max="2022-12-30"
+          max="2022-08-31"
         />
         <br /><br />
-        <label for="date">Fecha Final</label> <br/>
+        <label for="date"><b>Fecha Final</b></label> <br />
+        <span style="margin: 0px 10px 0px 0px">
+          <i class="far fa-calendar-alt" style="color: white"></i
+        ></span>
         <input
           type="date"
           name="fechafin"
@@ -85,8 +356,8 @@
           min="2021-01-02"
           max="2022-12-31"
         />
-        <br /><br />
-
+        <br />
+        <br />
         <button type="submit">Guardar</button>
       </form>
     </div>

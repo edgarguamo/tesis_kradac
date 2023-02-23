@@ -184,11 +184,16 @@ if (
       }
     default:
       console.log("consulta por defecto solo por fecha");
+     /*
+      var tiempo = Date.now();
+      var hoy = new Date(tiempo).toISOString();
+      console.log(hoy.substring(0,12));
+      */
       this.find(
         {
           FechaHoraRegistro: {
             $gte: "2021-01-01",
-            $lte: "2021-01-02",
+            $lte: "2021-01-31",
           },
         },
         cb
