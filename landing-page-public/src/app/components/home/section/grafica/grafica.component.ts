@@ -42,15 +42,15 @@ export class GraficaComponent {
   fecha_final = '31 de Febrero del 2021';
 
   chartLabels = ['January', 'February', 'March', 'April'];
-
   chartOptions = {
     responsive: true,
+    labels: this.chartLabels,
   };
   titleChart = 'Distribución de clientes en el mes de enero';
   // Inicio grafica 1
-  positivo = '1';
-  negativo = '2';
-  neutral = '3';
+  positivo = '20';
+  negativo = '40';
+  neutral = '40';
   //Fin gráfica 1
   // Grafica 2
   valoracion_0 = '10';
@@ -61,8 +61,9 @@ export class GraficaComponent {
   valoracion_5 = '10';
   sh = 1;
   //Fin gráfia 2
-  total_comentarios = 1311234;
-
+  total_comentarios = 11234;
+  // elementos para la gráfica
+  datos_grafica = [[], [], []];
   average_notes = '3.5';
   // Fin declaración de variables
   constructor(private dataService: DataService) {}
@@ -74,6 +75,7 @@ export class GraficaComponent {
   }
 
   ngOnSubmit(): void {
+    this.tipoGrafica(this.userQuery.TipoGrafica);
     this.dataService
       .getUsuariosComentariosConsulta(
         this.userQuery.TipoConsulta,
@@ -81,7 +83,6 @@ export class GraficaComponent {
         this.userQuery.FechaHoraFin
       )
       .subscribe((data) => this.setListDataset(data));
-    this.tipoGrafica(this.userQuery.TipoGrafica);
     console.log('El formulario fue enviado y los datos son: ', this.userQuery);
   }
   private tipoGrafica(seleccion: string): void {
@@ -96,7 +97,7 @@ export class GraficaComponent {
         this.chartType = 'polarArea';
         break;
       case '4':
-        this.chartType = 'scatter';
+        this.chartType = 'doughnut';
         break;
       default:
         this.chartType = 'bar';
@@ -110,6 +111,8 @@ export class GraficaComponent {
 
   private setListDataset(data: UsuariosComentarios[]): void {
     this.listDataset = data;
+    // Generación de valores para la gráficcas
+    // Gráfica principal
     let defaultquery = Object.entries(
       this.listDataset.reduce(
         (aux, d) => (
@@ -121,6 +124,7 @@ export class GraficaComponent {
         {}
       )
     );
+    // Gráfica para las valoraciones y promedio
     let valorQuery = Object.entries(
       this.listDataset.reduce(
         (aux, d) => (
@@ -132,6 +136,89 @@ export class GraficaComponent {
         {}
       )
     );
+    switch (this.chartType) {
+      case 'bar':
+        console.log('entra');
+        this.chartData = [
+          {
+            data: [defaultquery[0][1] as number],
+            label: defaultquery[0][0],
+          },
+          {
+            data: [defaultquery[1][1] as number],
+            label: defaultquery[1][0],
+          },
+          {
+            data: [defaultquery[2][1] as number],
+            label: defaultquery[2][0],
+          },
+        ];
+        break;
+      case 'line':
+        this.chartData = [
+          {
+            data: [0,defaultquery[0][1] as number],
+            label: defaultquery[0][0],
+          },
+          {
+            data: [0,defaultquery[1][1] as number],
+            label: defaultquery[1][0],
+          },
+          {
+            data: [0,defaultquery[2][1] as number],
+            label: defaultquery[2][0],
+          },
+        ];
+       break;
+        case 'polar':
+        this.chartData = [
+          {
+            data: [
+              defaultquery[0][1] as number,
+              defaultquery[1][1] as number,
+              defaultquery[2][1] as number,
+            ],
+            label: defaultquery[0][0],
+          },
+        ];
+        break;
+      case 'doughnut':
+        this.chartData = [
+          {
+            data: [
+              defaultquery[0][1] as number,
+              defaultquery[1][1] as number,
+              defaultquery[2][1] as number,
+            ],
+            label: defaultquery[0][0],
+          },
+        ];
+        break;
+      default:
+        this.chartType = 'bar';
+        this.chartData = [
+          {
+            data: [defaultquery[0][1] as number],
+            label: defaultquery[0][0],
+          },
+          {
+            data: [defaultquery[1][1] as number],
+            label: defaultquery[1][0],
+          },
+          {
+            data: [defaultquery[2][1] as number],
+            label: defaultquery[2][0],
+          },
+        ];
+        break;
+    }
+
+    this.chartLabels = [
+      defaultquery[0][0],
+      defaultquery[1][0],
+      defaultquery[2][0],
+    ];
+    console.log (this.chartLabels);
     /* 
     Clasificación de los comentarios por tipo 
     */
@@ -145,7 +232,6 @@ export class GraficaComponent {
     this.positivo = (((defaultquery[2][1] as number) * 100) / total).toFixed(2);
 
     var total_calificacion =
-      (valorQuery[0][1] as number) +
       (valorQuery[1][1] as number) +
       (valorQuery[2][1] as number) +
       (valorQuery[3][1] as number) +
@@ -158,8 +244,7 @@ export class GraficaComponent {
       Media de calificaciones
       */
     this.average_notes = (
-      ((valorQuery[0][1] as number) * 0 +
-        (valorQuery[1][1] as number) * 1 +
+      ((valorQuery[1][1] as number) * 1 +
         (valorQuery[2][1] as number) * 2 +
         (valorQuery[3][1] as number) * 3 +
         (valorQuery[4][1] as number) * 4 +
@@ -196,21 +281,17 @@ export class GraficaComponent {
       ((valorQuery[5][1] as number) * 100) /
       total_calificacion
     ).toFixed(2);
+
+    /*
+     Elemmentos para la gráfica
+    */
     console.log(defaultquery);
     console.log(total);
-    this.chartData = [
-      {
-        data: [defaultquery[0][1] as number],
-        label: defaultquery[0][0],
-      },
-      {
-        data: [defaultquery[1][1] as number],
-        label: defaultquery[1][0],
-      },
-      {
-        data: [defaultquery[2][1] as number],
-        label: defaultquery[2][0],
-      },
+
+    this.datos_grafica = [
+      [defaultquery[0][1] as number],
+      [defaultquery[1][1] as number],
+      [defaultquery[2][1] as number],
     ];
     if (
       (this.userQuery.FechaHoraRegistro !== undefined,

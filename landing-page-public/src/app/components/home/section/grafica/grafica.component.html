@@ -1,264 +1,3 @@
-<!-- ======= Pricing Section ======= -->
-<section>
-  <label>
-    <input [value]="1" [(ngModel)]="sh" name="sh" type="radio" /> General
-  </label>
-  <label>
-    <input [value]="0" [(ngModel)]="sh" name="sh" type="radio" /> Administrador
-  </label>
-</section>
-<section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
-  <div class="container2" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Percepción de los Usuarios</h2>
-      <h4>La media de los usuarios piensan que el aplicativo es:</h4>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <div
-          class="box"
-          data-aos="fade-up"
-          data-aos-delay="100"
-          style="font-size: 44px"
-        >
-          <h3>Negativo</h3>
-          <i class="fas fa-sad-cry" style="font-size: 250px"></i>
-          <h4>{{ negativo }}</h4>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-        <div class="box featured" data-aos="fade-up" data-aos-delay="200">
-          <h3>Neutral</h3>
-          <i class="fas fa-meh" style="font-size: 250px"></i>
-
-          <h4>{{ neutral }}</h4>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="300">
-          <h3>Positivo</h3>
-          <i class="fas fa-smile" style="font-size: 250px"></i>
-          <h4>{{ positivo }}</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Counts reviews -->
-<!-- ======= Services Section ======= -->
-<section id="services" class="services section-bg">
-  <div class="container4" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Medía de Calificación</h2>
-    </div>
-    <div class="row average">
-      <div class="average">
-        <h4>
-          De los <b>131546 </b> comentarios analizados se ha puede observar que
-          la media de calificacines dejadas por los usuarios
-        </h4>
-        <p href="#">
-          {{ average_notes }}
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Services Section -->
-
-<!-- End Pricing Section -->
-<section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
-  <div class="container2" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Calificación del aplicativo</h2>
-      <h4>
-        Las personas emplean las siguientes palabras para describir el servicio
-        al momento de calificarlo
-      </h4>
-    </div>
-    <div class="row">
-      <div class="col-lg-2 col-md-12">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="far fa-star" style="font-size: 150px"></i>
-          <h4>{{ valoracion_0 }} %</h4>
-          <span class="bad badextendedCero">
-            <label>
-              Estas personas no han brindado su perspectiva del aplicativo, por
-              favor no olvides ingresar tus comentarios al finalizar el servicio
-            </label>
-          </span>
-          <span class="Neutral badextendedCero"> </span>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-star" style="font-size: 150px"></i>
-          <h4>{{ valoracion_1 }} %</h4>
-          <div class="row">
-            <span class="chip bad">
-              <label>Canceló Solicitud</label>
-            </span>
-            <span class="chip bad">
-              <label>Actitud Desagradable</label>
-            </span>
-            <span class="chip bad">
-              <label>Cobro Inadecuado</label>
-            </span>
-            <span class="chip bad">
-              <label>Mal estado del vehículo</label>
-            </span>
-            <span class="bad badextended">
-              <label>Uso del Teléfono</label>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-star" style="font-size: 75px"></i>
-          <br />
-          <i class="fas fa-star" style="font-size: 75px"></i>
-          <h4>{{ valoracion_2 }} %</h4>
-          <div class="row">
-            <span class="chip bad">
-              <label>Canceló Solicitud</label>
-            </span>
-            <span class="chip bad">
-              <label>Actitud Desagradable</label>
-            </span>
-            <span class="chip bad">
-              <label>Cobro Inadecuado</label>
-            </span>
-            <span class="chip bad">
-              <label>Mal estado del vehículo</label>
-            </span>
-            <span class="bad badextended">
-              <label>Uso del Teléfono</label>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 10px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 0px 0px 10px"
-          ></i>
-          <br />
-          <i class="fas fa-star" style="font-size: 75px"></i>
-          <h4>{{ valoracion_3 }} %</h4>
-          <div class="row">
-            <span class="chip bad">
-              <label>Mejor Empleo del mapa</label>
-            </span>
-            <span class="chip bad">
-              <label>Que cobre lo justo</label>
-            </span>
-            <span class="chip bad">
-              <label>Mejorar la Puntualidad</label>
-            </span>
-            <span class="chip bad">
-              <label>Limpieza de Vehículo</label>
-            </span>
-            <span class="bad badextended">
-              <label>Trato al Cliente</label>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-6 mt-4 mt-md-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="200">
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 10px 5px 0px"
-          ></i>
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 0px 5px 10px"
-          ></i>
-          <br />
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 10px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star"
-            style="font-size: 75px; padding: 0px 0px 0px 10px"
-          ></i>
-
-          <h4>{{ valoracion_4 }} %</h4>
-          <div class="row">
-            <span class="chip bad">
-              <label>Mejore la Música/Volumen</label>
-            </span>
-            <span class="chip bad">
-              <label>Presentación Personal</label>
-            </span>
-            <span class="chip bad">
-              <label>Evitar el Claxon</label>
-            </span>
-            <span class="chip bad">
-              <label>Tener Cambio para cobrar</label>
-            </span>
-            <span class="bad badextended">
-              <label>Wifi/Carga de Celulares</label>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-6 mt-4 mt-lg-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="300">
-          <i
-            class="fas fa-star"
-            style="font-size: 50px; padding: 0px 20px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star"
-            style="font-size: 50px; padding: 0px 0px 0px 20px"
-          ></i>
-          <br />
-          <i class="fas fa-star" style="font-size: 50px"></i>
-          <br />
-          <i
-            class="fas fa-star"
-            style="font-size: 50px; padding: 0px 20px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star"
-            style="font-size: 50px; padding: 0px 0px 0px 20px"
-          ></i>
-          <h4>{{ valoracion_5 }} %</h4>
-          <div class="row">
-            <span class="chip bad">
-              <label>Atento y Cordial</label>
-            </span>
-            <span class="chip bad">
-              <label>Viaje Agradable</label>
-            </span>
-            <span class="chip bad">
-              <label>Siempre llega a tiempo</label>
-            </span>
-            <span class="chip bad">
-              <label>Wifi/Carga de Celulares</label>
-            </span>
-            <span class="bad badextended">
-              <label>Servicio de Llamadas</label>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Final caliifación-->
 <!-- ======= Grafica Section ======= -->
 <section id="grafica_{{ numGrafico }}" class="blog" *ngIf="sh == 1">
   <div class="container">
@@ -326,7 +65,7 @@
           <option value="1">Barras</option>
           <option value="2">Lineas</option>
           <option value="3">Polar</option>
-          <option value="4">Scatter</option>
+          <option value="4">Pastel</option>
         </select>
         <br /><br />
         <label for="date"><b>Fecha inicial</b></label> <br />
@@ -364,3 +103,271 @@
   </div>
 </section>
 <!-- End Grafica Section -->
+<!-- ======= Pricing Section ======= -->
+<!--
+<section>
+  <label>
+    <input [value]="1" [(ngModel)]="sh" name="sh" type="radio" /> General
+  </label>
+  <label>
+    <input [value]="0" [(ngModel)]="sh" name="sh" type="radio" /> Administrador
+  </label>
+</section>
+-->
+<section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
+  <div class="recepcion" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Percepción de los Usuarios</h2>
+      <h4>La media de los usuarios piensan que el aplicativo es:</h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="box"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style="font-size: 44px"
+        >
+          <b><p>Negativo</p></b>
+          <i class="fas fa-sad-cry" style="font-size: 250px"></i>
+          <h4>
+            <b>{{ negativo }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="200">
+          <b><p>Neutral</p></b>
+          <i class="fas fa-meh " style="font-size: 250px"></i>
+          <h4>
+            <b>{{ neutral }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+          <b><p>Positivo</p></b>
+          <i class="fas fa-smile" style="font-size: 250px"></i>
+          <h4>
+            <b>{{ positivo }} %</b>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Counts reviews -->
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container4" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Medía de Calificación</h2>
+    </div>
+    <div class="row average">
+      <div class="average">
+        <h4>
+          De los <b>{{ total_comentarios }} </b> comentarios analizados se ha
+          puede observar que la media de calificacines dejadas por los usuarios
+        </h4>
+        <p href="#">
+          {{ average_notes }} / 5
+          <i class="fas fa-star" style="color:#fabd2f; font-size: 80px;"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Services Section -->
+<!-- End Pricing Section -->
+<section id="calificacion" class="pricing section-bg" *ngIf="sh == 1">
+  <div class="container2" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Calificación del aplicativo</h2>
+      <h4>
+        Las <b>{{ total_comentarios }} </b> personas que emplean las siguientes
+        palabras para describir el servicio al momento de calificarlo
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-12">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="far fa-star stars" style="font-size: 150px"></i>
+          <h4><b>{{ valoracion_0 }} %</b></h4>
+          <span class="bad badextendedCero">
+            <label>
+              Estas personas no han brindado su perspectiva del aplicativo, por
+              favor no olvides ingresar tus comentarios al finalizar el servicio
+            </label>
+          </span>
+          <span class="Neutral badextendedCero"> </span>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star stars" style="font-size: 150px"></i>
+          <h4><b>{{ valoracion_1 }} %</b></h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Canceló Solicitud</label>
+            </span>
+            <span class="chip bad">
+              <label>Actitud Desagradable</label>
+            </span>
+            <span class="chip bad">
+              <label>Cobro Inadecuado</label>
+            </span>
+            <span class="chip bad">
+              <label>Mal estado del vehículo</label>
+            </span>
+            <span class="bad badextended">
+              <label>Uso del Teléfono</label>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <h4><b>{{ valoracion_2 }} %</b></h4>
+          <div class="row">
+            <span class="chip bad">
+              <label>Canceló Solicitud</label>
+            </span>
+            <span class="chip bad">
+              <label>Actitud Desagradable</label>
+            </span>
+            <span class="chip bad">
+              <label>Cobro Inadecuado</label>
+            </span>
+            <span class="chip bad">
+              <label>Mal estado del vehículo</label>
+            </span>
+            <span class="bad badextended">
+              <label>Uso del Teléfono</label>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <h4><b>{{ valoracion_3 }} %</b></h4>
+          <div class="row">
+            <span class="chip neutral">
+              <label>Mejor Empleo del mapa</label>
+            </span>
+            <span class="chip neutral">
+              <label>Que cobre lo justo</label>
+            </span>
+            <span class="chip neutral">
+              <label>Mejorar la Puntualidad</label>
+            </span>
+            <span class="chip neutral">
+              <label>Limpieza de Vehículo</label>
+            </span>
+            <span class="badextended neutral">
+              <label>Trato al Cliente</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-md-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="200">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 5px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 5px 10px"
+          ></i>
+          <br />
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+
+          <h4><b>{{ valoracion_4 }} %</b></h4>
+          <div class="row">
+            <span class="chip great">
+              <label>Mejore la Música/Volumen</label>
+            </span>
+            <span class="chip great">
+              <label>Presentación Personal</label>
+            </span>
+            <span class="chip great">
+              <label>Evitar el Claxon</label>
+            </span>
+            <span class="chip great">
+              <label>Tener Cambio para cobrar</label>
+            </span>
+            <span class="badextended great">
+              <label>Wifi/Carga de Celulares</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-lg-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 50px"></i>
+          <br />
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <h4><b>{{ valoracion_5 }} %</b></h4>
+          <div class="row">
+            <span class="chip great">
+              <label>Atento y Cordial</label>
+            </span>
+            <span class="chip great">
+              <label>Viaje Agradable</label>
+            </span>
+            <span class="chip great">
+              <label>Siempre llega a tiempo</label>
+            </span>
+            <span class="chip great">
+              <label>Wifi/Carga de Celulares</label>
+            </span>
+            <span class="badextended great">
+              <label>Servicio de Llamadas</label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Final caliifación-->
