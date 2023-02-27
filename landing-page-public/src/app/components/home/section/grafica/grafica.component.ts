@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UsuariosComentarios } from 'src/app/models/usuarios-comentarios.model';
 import { DataService } from 'src/app/services/data.service';
+//import * as labels from "chartjs-plugin-labels";
+import 'chartjs-plugin-labels';
 
 @Component({
   selector: 'app-grafica',
@@ -20,8 +22,6 @@ export class GraficaComponent {
     this.updateChart(data);
   }
   updateChart(data) {}
-  // Aqui se guardan los datos obtenidos del backEnd.
-  // Desde este array puede manipularlos para los graficos
   private listDataset: UsuariosComentarios[] = [];
 
   @Input('idx') numGrafico: number;
@@ -31,21 +31,56 @@ export class GraficaComponent {
     {
       data: [330, 600, 260, 700],
       label: 'Clientes',
+      backgroundColor: 'rgba(238, 83, 79, 1)',
     },
     {
       data: [120, 455, 100, 340],
       label: 'Conductores',
+      backgroundColor: 'rgba(238, 83, 79, 1)',
     },
   ];
   chartType = 'bar';
   fecha_inical = '1 de Enero del 2021';
-  fecha_final = '31 de Febrero del 2021';
+  fecha_final = '31 de Enero del 2021';
 
   chartLabels = ['January', 'February', 'March', 'April'];
+  // opciones para generar la gráfica
+  chartColors = [
+    { backgroundColor: '#fe8019' },
+    { backgroundColor: '#e03a3c' },
+    { backgroundColor: '#b8bb26' },
+  ];
+  chartLegend = true;
   chartOptions = {
     responsive: true,
-    labels: this.chartLabels,
+    //labels: this.chartLabels,
+    legend: {
+      display: this.chartLegend,
+      labels: {
+        fontSize: 22,
+      },
+    },
+    pieceLabel: {
+      render: function (args) {
+        const label = args.label,
+          value = args.value;
+        return label + value;
+      },
+    },
+    fontSize: 15,
+    fontColor: '#2b2b2b',
+    scales: {
+      x: {
+        title: {
+          text: 'seconds',
+          font: {
+            size: 24,
+          },
+        },
+      },
+    },
   };
+
   titleChart = 'Distribución de clientes en el mes de enero';
   // Inicio grafica 1
   positivo = '20';
@@ -136,89 +171,174 @@ export class GraficaComponent {
         {}
       )
     );
+    if (this.userQuery.TipoConsulta === '3') {
+      switch (this.chartType) {
+        case 'bar':
+          this.chartData = [
+            {
+              data: [defaultquery[0][1] as number],
+              label: defaultquery[0][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [defaultquery[1][1] as number],
+              label: defaultquery[1][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [defaultquery[2][1] as number],
+              label: defaultquery[2][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+          ];
+          break;
+        case 'line':
+          this.chartData = [
+            {
+              data: [0, defaultquery[0][1] as number],
+              label: defaultquery[0][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, defaultquery[1][1] as number],
+              label: defaultquery[1][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, defaultquery[2][1] as number],
+              label: defaultquery[2][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+          ];
+          break;
+        default:
+          this.chartData = [
+            {
+              data: [
+                defaultquery[1][1] as number,
+                defaultquery[0][1] as number,
+                defaultquery[2][1] as number,
+              ],
+              label: defaultquery[0][0],
+              backgroundColor: 'rgba(129, 61, 126, 0.25)',
+            },
+          ];
+          break;
+      }
+    } else {
+      switch (this.chartType) {
+        case 'bar':
+          this.chartData = [
+            {
+              data: [valorQuery[0][1] as number],
+              label: valorQuery[0][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [valorQuery[1][1] as number],
+              label: valorQuery[1][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [valorQuery[2][1] as number],
+              label: valorQuery[2][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [valorQuery[3][1] as number],
+              label: valorQuery[3][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [valorQuery[4][1] as number],
+              label: valorQuery[4][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [valorQuery[5][1] as number],
+              label: valorQuery[5][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+          ];
+          break;
+        case 'line':
+          this.chartData = [
+            {
+              data: [0, valorQuery[0][1] as number],
+              label: valorQuery[0][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, valorQuery[1][1] as number],
+              label: valorQuery[1][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, valorQuery[2][1] as number],
+              label: valorQuery[2][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, valorQuery[3][1] as number],
+              label: valorQuery[3][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, valorQuery[4][1] as number],
+              label: valorQuery[4][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+            {
+              data: [0, valorQuery[5][1] as number],
+              label: valorQuery[5][0],
+              backgroundColor: 'rgba(238, 83, 79, 1)',
+            },
+          ];
+          break;
+        default:
+          this.chartData = [
+            {
+              data: [
+                valorQuery[1][1] as number,
+                valorQuery[0][1] as number,
+                valorQuery[2][1] as number,
+                valorQuery[3][1] as number,
+                valorQuery[4][1] as number,
+                valorQuery[5][1] as number,
+              ],
+              label: valorQuery[0][0],
+              backgroundColor: 'rgba(129, 61, 126, 0.25)',
+            },
+          ];
+          break;
+      }
+    }
+    /*
     switch (this.chartType) {
       case 'bar':
-        console.log('entra');
-        this.chartData = [
-          {
-            data: [defaultquery[0][1] as number],
-            label: defaultquery[0][0],
-          },
-          {
-            data: [defaultquery[1][1] as number],
-            label: defaultquery[1][0],
-          },
-          {
-            data: [defaultquery[2][1] as number],
-            label: defaultquery[2][0],
-          },
-        ];
+        this.chartLegend = false;
         break;
       case 'line':
-        this.chartData = [
-          {
-            data: [0,defaultquery[0][1] as number],
-            label: defaultquery[0][0],
-          },
-          {
-            data: [0,defaultquery[1][1] as number],
-            label: defaultquery[1][0],
-          },
-          {
-            data: [0,defaultquery[2][1] as number],
-            label: defaultquery[2][0],
-          },
-        ];
-       break;
-        case 'polar':
-        this.chartData = [
-          {
-            data: [
-              defaultquery[0][1] as number,
-              defaultquery[1][1] as number,
-              defaultquery[2][1] as number,
-            ],
-            label: defaultquery[0][0],
-          },
-        ];
+        this.chartLegend = true;
+        break;
+      case 'polarArea':
+        this.chartLegend = true;
         break;
       case 'doughnut':
-        this.chartData = [
-          {
-            data: [
-              defaultquery[0][1] as number,
-              defaultquery[1][1] as number,
-              defaultquery[2][1] as number,
-            ],
-            label: defaultquery[0][0],
-          },
-        ];
+        this.chartLegend = false;
         break;
       default:
-        this.chartType = 'bar';
-        this.chartData = [
-          {
-            data: [defaultquery[0][1] as number],
-            label: defaultquery[0][0],
-          },
-          {
-            data: [defaultquery[1][1] as number],
-            label: defaultquery[1][0],
-          },
-          {
-            data: [defaultquery[2][1] as number],
-            label: defaultquery[2][0],
-          },
-        ];
+        this.chartLegend = true;
         break;
     }
+    */
 
     this.chartLabels = [
       defaultquery[0][0],
       defaultquery[1][0],
       defaultquery[2][0],
     ];
-    console.log (this.chartLabels);
+    console.log(this.chartLabels);
     /* 
     Clasificación de los comentarios por tipo 
     */
@@ -312,9 +432,9 @@ export class GraficaComponent {
       }
     }
   }
-
-  //Obtener el título  para las gráficas
-
+  /*
+    Obtener el título  para las gráficas
+  */
   private titleGraph(fechaInicial: string, fechaFinal: string): void {
     console.log(fechaInicial.substring(5, 7));
     var mes_inicial = new Intl.DateTimeFormat('es-ES', {
