@@ -5,6 +5,7 @@ import { UsuariosComentarios } from 'src/app/models/usuarios-comentarios.model';
 import { DataService } from 'src/app/services/data.service';
 //import * as labels from "chartjs-plugin-labels";
 import 'chartjs-plugin-labels';
+import 'chartjs-plugin-colorschemes';
 
 @Component({
   selector: 'app-grafica',
@@ -22,40 +23,67 @@ export class GraficaComponent {
     this.updateChart(data);
   }
   updateChart(data) {}
+  /*
+    Inicio Variables
+  */
   private listDataset: UsuariosComentarios[] = [];
 
   @Input('idx') numGrafico: number;
   //@Input() titleChart: string;
   userQuery = new UsuariosComentarios();
+  colorsChart = [
+    'rgba(204, 36, 29 , 1)',
+    'rgba(254, 128, 25, 1)',
+    'rgba(250, 189, 47, 1)',
+    'rgba(235, 219, 178,1)',
+    'rgba(184, 187, 38, 1)',
+    'rgba(152, 151, 26, 1)',
+  ];
   chartData = [
     {
       data: [330, 600, 260, 700],
-      label: 'Clientes',
-      backgroundColor: 'rgba(238, 83, 79, 1)',
+      label: ['Negativo '],
+      backgroundColor: [this.colorsChart[0]],
     },
     {
-      data: [120, 455, 100, 340],
-      label: 'Conductores',
-      backgroundColor: 'rgba(238, 83, 79, 1)',
+      data: [250, 455, 100, 340],
+      label: ['Neutral'],
+      backgroundColor: [this.colorsChart[2]],
+    },
+    {
+      data: [170, 455, 100, 340],
+      label: ['Positivo'],
+      backgroundColor: [this.colorsChart[4]],
     },
   ];
   chartType = 'bar';
   fecha_inical = '1 de Enero del 2021';
   fecha_final = '31 de Enero del 2021';
 
-  chartLabels = ['January', 'February', 'March', 'April'];
+  chartLabels = ['Negativo', 'Positivo', 'Neutral'];
   // opciones para generar la gráfica
   chartColors = [
-    { backgroundColor: '#fe8019' },
-    { backgroundColor: '#e03a3c' },
-    { backgroundColor: '#b8bb26' },
+    {
+      backgroundColor: [
+        'rgba(204, 36, 29, 1)',
+        'rgba(254, 128, 25, 1)',
+        'rgba(250, 189, 47, 1)',
+        'rgba(235, 219, 178, 1)',
+        'rgba(184, 187, 38, 1)',
+        'rgba(152, 151, 26, 1)',
+      ],
+    },
+    { backgroundColor: 'rgba(254, 128, 25, 1)' },
+    { backgroundColor: 'rgba(250, 189, 47, 1)' },
+    { backgroundColor: 'rgba(235, 219, 178, 1)' },
+    { backgroundColor: 'rgba(184, 187, 38, 1)' },
+    { backgroundColor: 'rgba(152, 151, 26, 1)' },
   ];
-  chartLegend = true;
+
   chartOptions = {
     responsive: true,
-    //labels: this.chartLabels,
     legend: {
-      display: this.chartLegend,
+      display: true,
       labels: {
         fontSize: 22,
       },
@@ -66,19 +94,14 @@ export class GraficaComponent {
           value = args.value;
         return label + value;
       },
-    },
-    fontSize: 15,
-    fontColor: '#2b2b2b',
-    scales: {
-      x: {
-        title: {
-          text: 'seconds',
-          font: {
-            size: 24,
-          },
+      plugins: {
+        colorschemes: {
+          scheme: 'brewer.Paired12',
         },
       },
     },
+    defaultFontSize: 30,
+    fontColor: '#2b2b2b',
   };
 
   titleChart = 'Distribución de clientes en el mes de enero';
@@ -96,11 +119,13 @@ export class GraficaComponent {
   valoracion_5 = '10';
   sh = 1;
   //Fin gráfia 2
-  total_comentarios = 11234;
+  total_comentarios = 750;
   // elementos para la gráfica
   datos_grafica = [[], [], []];
   average_notes = '3.5';
-  // Fin declaración de variables
+  /*
+    Fin Variables
+  */
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
@@ -177,38 +202,44 @@ export class GraficaComponent {
           this.chartData = [
             {
               data: [defaultquery[0][1] as number],
-              label: defaultquery[0][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
             },
             {
               data: [defaultquery[1][1] as number],
-              label: defaultquery[1][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[1][0]],
+              backgroundColor: [this.colorsChart[2]],
             },
             {
               data: [defaultquery[2][1] as number],
-              label: defaultquery[2][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[2][0]],
+              backgroundColor: [this.colorsChart[4]],
             },
           ];
+          this.chartLabels = [`${this.fecha_inical} - ${this.fecha_final}`];
           break;
         case 'line':
           this.chartData = [
             {
               data: [0, defaultquery[0][1] as number],
-              label: defaultquery[0][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
             },
             {
               data: [0, defaultquery[1][1] as number],
-              label: defaultquery[1][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[1][0]],
+              backgroundColor: [this.colorsChart[2]],
             },
             {
               data: [0, defaultquery[2][1] as number],
-              label: defaultquery[2][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [defaultquery[2][0]],
+              backgroundColor: [this.colorsChart[4]],
             },
+          ];
+          this.chartLabels = [
+            defaultquery[0][0],
+            defaultquery[1][0],
+            defaultquery[2][0],
           ];
           break;
         default:
@@ -219,10 +250,24 @@ export class GraficaComponent {
                 defaultquery[0][1] as number,
                 defaultquery[2][1] as number,
               ],
-              label: defaultquery[0][0],
-              backgroundColor: 'rgba(129, 61, 126, 0.25)',
+              label: [
+                defaultquery[0][0],
+                defaultquery[1][0],
+                defaultquery[2][0],
+              ],
+              backgroundColor: [
+                'rgba(254, 128, 25, 1)',
+                'rgba(250, 189, 47, 1)',
+                'rgba(184, 187, 38, 1)',
+              ],
             },
           ];
+          this.chartLabels = [
+            defaultquery[0][0],
+            defaultquery[1][0],
+            defaultquery[2][0],
+          ];
+
           break;
       }
     } else {
@@ -231,68 +276,77 @@ export class GraficaComponent {
           this.chartData = [
             {
               data: [valorQuery[0][1] as number],
-              label: valorQuery[0][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
             },
             {
               data: [valorQuery[1][1] as number],
-              label: valorQuery[1][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[1][0]],
+              backgroundColor: [this.colorsChart[1]],
             },
             {
               data: [valorQuery[2][1] as number],
-              label: valorQuery[2][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[2][0]],
+              backgroundColor: [this.colorsChart[2]],
             },
             {
               data: [valorQuery[3][1] as number],
-              label: valorQuery[3][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[3][0]],
+              backgroundColor: [this.colorsChart[3]],
             },
             {
               data: [valorQuery[4][1] as number],
-              label: valorQuery[4][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[4][0]],
+              backgroundColor: [this.colorsChart[4]],
             },
             {
               data: [valorQuery[5][1] as number],
-              label: valorQuery[5][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[5][0]],
+              backgroundColor: [this.colorsChart[5]],
             },
           ];
+          this.chartLabels = [`${this.fecha_inical} - ${this.fecha_final}`];
           break;
         case 'line':
           this.chartData = [
             {
               data: [0, valorQuery[0][1] as number],
-              label: valorQuery[0][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
             },
             {
               data: [0, valorQuery[1][1] as number],
-              label: valorQuery[1][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[1][0]],
+              backgroundColor: [this.colorsChart[1]],
             },
             {
               data: [0, valorQuery[2][1] as number],
-              label: valorQuery[2][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[2][0]],
+              backgroundColor: [this.colorsChart[2]],
             },
             {
               data: [0, valorQuery[3][1] as number],
-              label: valorQuery[3][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[3][0]],
+              backgroundColor: [this.colorsChart[3]],
             },
             {
               data: [0, valorQuery[4][1] as number],
-              label: valorQuery[4][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[4][0]],
+              backgroundColor: [this.colorsChart[4]],
             },
             {
               data: [0, valorQuery[5][1] as number],
-              label: valorQuery[5][0],
-              backgroundColor: 'rgba(238, 83, 79, 1)',
+              label: [valorQuery[5][0]],
+              backgroundColor: [this.colorsChart[5]],
             },
+          ];
+          this.chartLabels = [
+            valorQuery[0][0],
+            valorQuery[1][0],
+            valorQuery[2][0],
+            valorQuery[3][0],
+            valorQuery[4][0],
+            valorQuery[5][0],
           ];
           break;
         default:
@@ -306,38 +360,35 @@ export class GraficaComponent {
                 valorQuery[4][1] as number,
                 valorQuery[5][1] as number,
               ],
-              label: valorQuery[0][0],
-              backgroundColor: 'rgba(129, 61, 126, 0.25)',
+              label: [
+                valorQuery[0][0],
+                valorQuery[1][0],
+                valorQuery[2][0],
+                valorQuery[3][0],
+                valorQuery[4][0],
+                valorQuery[5][0],
+              ],
+              backgroundColor: [
+                this.colorsChart[0],
+                this.colorsChart[1],
+                this.colorsChart[2],
+                this.colorsChart[3],
+                this.colorsChart[4],
+                this.colorsChart[5],
+              ],
             },
+          ];
+          this.chartLabels = [
+            valorQuery[0][0],
+            valorQuery[1][0],
+            valorQuery[2][0],
+            valorQuery[3][0],
+            valorQuery[4][0],
+            valorQuery[5][0],
           ];
           break;
       }
     }
-    /*
-    switch (this.chartType) {
-      case 'bar':
-        this.chartLegend = false;
-        break;
-      case 'line':
-        this.chartLegend = true;
-        break;
-      case 'polarArea':
-        this.chartLegend = true;
-        break;
-      case 'doughnut':
-        this.chartLegend = false;
-        break;
-      default:
-        this.chartLegend = true;
-        break;
-    }
-    */
-
-    this.chartLabels = [
-      defaultquery[0][0],
-      defaultquery[1][0],
-      defaultquery[2][0],
-    ];
     console.log(this.chartLabels);
     /* 
     Clasificación de los comentarios por tipo 
