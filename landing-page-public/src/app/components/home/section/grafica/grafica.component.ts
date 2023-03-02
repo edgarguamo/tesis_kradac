@@ -109,6 +109,9 @@ export class GraficaComponent {
   positivo = '20';
   negativo = '40';
   neutral = '40';
+  positivo_conductor = '40';
+  negativo_conductor = '20';
+  neutro_conductor = '40';
   //Fin gráfica 1
   // Grafica 2
   valoracion_0 = '10';
@@ -117,12 +120,21 @@ export class GraficaComponent {
   valoracion_3 = '25';
   valoracion_4 = '10';
   valoracion_5 = '10';
+
+  valoracion_0c = '10';
+  valoracion_1c = '15';
+  valoracion_2c = '20';
+  valoracion_3c = '25';
+  valoracion_4c = '10';
+  valoracion_5c = '10';
+
   sh = 1;
   //Fin gráfia 2
   total_comentarios = 750;
   // elementos para la gráfica
   datos_grafica = [[], [], []];
   average_notes = '3.5';
+  average_notes_conductor = '2.2';
   /*
     Fin Variables
   */
@@ -196,6 +208,30 @@ export class GraficaComponent {
         {}
       )
     );
+    let valorConductorQuery = Object.entries(
+      this.listDataset.reduce(
+        (aux, d) => (
+          aux[d.ValoracionChoferes]
+            ? (aux[d.ValoracionChoferes] += 1)
+            : (aux[d.ValoracionChoferes] = 1),
+          aux
+        ),
+        {}
+      )
+    );
+    let ClientesQuery = Object.entries(
+      this.listDataset.reduce(
+        (aux, d) => (
+          aux[d.CalificacionClientes]
+            ? (aux[d.CalificacionClientes] += 1)
+            : (aux[d.CalificacionClientes] = 1),
+          aux
+        ),
+        {}
+      )
+    );
+    console.log(this.listDataset);
+
     if (this.userQuery.TipoConsulta === '3') {
       switch (this.chartType) {
         case 'bar':
@@ -398,9 +434,40 @@ export class GraficaComponent {
       (defaultquery[0][1] as number) +
       (defaultquery[1][1] as number) +
       (defaultquery[2][1] as number);
-    this.negativo = (((defaultquery[0][1] as number) * 100) / total).toFixed(2);
-    this.neutral = (((defaultquery[1][1] as number) * 100) / total).toFixed(2);
-    this.positivo = (((defaultquery[2][1] as number) * 100) / total).toFixed(2);
+    this.negativo_conductor = (
+      ((defaultquery[0][1] as number) * 100) /
+      total
+    ).toFixed(2);
+    this.neutro_conductor = (
+      ((defaultquery[1][1] as number) * 100) /
+      total
+    ).toFixed(2);
+    this.positivo_conductor = (
+      ((defaultquery[2][1] as number) * 100) /
+      total
+    ).toFixed(2);
+
+    var total_cliente =
+      (ClientesQuery[0][1] as number) +
+      (ClientesQuery[1][1] as number) +
+      (ClientesQuery[2][1] as number);
+    this.negativo = (
+      ((ClientesQuery[0][1] as number) * 100) /
+      total_cliente
+    ).toFixed(2);
+    this.neutral = (
+      ((ClientesQuery[1][1] as number) * 100) /
+      total_cliente
+    ).toFixed(2);
+    this.positivo = (
+      ((ClientesQuery[2][1] as number) * 100) /
+      total_cliente
+    ).toFixed(2);
+
+    /* 
+      
+      Media de calificaciones
+      */
 
     var total_calificacion =
       (valorQuery[1][1] as number) +
@@ -408,12 +475,9 @@ export class GraficaComponent {
       (valorQuery[3][1] as number) +
       (valorQuery[4][1] as number) +
       (valorQuery[5][1] as number);
+      console.log(total_calificacion);
     this.total_comentarios = total;
 
-    /* 
-      
-      Media de calificaciones
-      */
     this.average_notes = (
       ((valorQuery[1][1] as number) * 1 +
         (valorQuery[2][1] as number) * 2 +
@@ -423,34 +487,50 @@ export class GraficaComponent {
       total_calificacion
     ).toFixed(2);
 
+    var total_calificacion_c =
+      (valorConductorQuery[1][1] as number) +
+      (valorConductorQuery[2][1] as number) +
+      (valorConductorQuery[3][1] as number) +
+      (valorConductorQuery[4][1] as number) +
+      (valorConductorQuery[5][1] as number);
+
+    this.average_notes_conductor = (
+      ((valorConductorQuery[1][1] as number) * 1 +
+        (valorConductorQuery[2][1] as number) * 2 +
+        (valorConductorQuery[3][1] as number) * 3 +
+        (valorConductorQuery[4][1] as number) * 4 +
+        (valorConductorQuery[5][1] as number) * 5) /
+      total_calificacion_c
+    ).toFixed(2);
+    console.log(this.average_notes_conductor);
+
     /*
        Valoración de los usuarios 
       */
-    console.log(this.average_notes);
-    this.valoracion_0 = (
-      ((valorQuery[0][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_0c = (
+      ((valorConductorQuery[0][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
-    this.valoracion_1 = (
-      ((valorQuery[1][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_1c= (
+      ((valorConductorQuery[1][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
-    this.valoracion_2 = (
-      ((valorQuery[2][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_2c = (
+      ((valorConductorQuery[2][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
-    this.valoracion_3 = (
-      ((valorQuery[3][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_3c = (
+      ((valorConductorQuery[3][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
     //this.valoracion_3 = '12.3';
-    this.valoracion_4 = (
-      ((valorQuery[4][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_4c = (
+      ((valorConductorQuery[4][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
-    this.valoracion_5 = (
-      ((valorQuery[5][1] as number) * 100) /
-      total_calificacion
+    this.valoracion_5c = (
+      ((valorConductorQuery[5][1] as number) * 100) /
+      this.total_comentarios
     ).toFixed(2);
 
     /*

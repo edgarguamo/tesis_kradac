@@ -12,5 +12,5 @@ export class UsuariosComentarios {
 	public ComentarioClientes: string;
 	public ComentarioConductores: string;
 	public ValoracionClientes: number;
-	public ValoracionConductores: number;
+	public ValoracionChoferes: number;
 }

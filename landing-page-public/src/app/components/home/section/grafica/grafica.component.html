@@ -107,34 +107,25 @@
     </div>
   </div>
 </section>
-<!-- End Grafica Section -->
-<!-- ======= Pricing Section ======= -->
-<!--
-<section>
-  <label>
-    <input [value]="1" [(ngModel)]="sh" name="sh" type="radio" /> General
-  </label>
-  <label>
-    <input [value]="0" [(ngModel)]="sh" name="sh" type="radio" /> Administrador
-  </label>
-</section>
--->
 <section id="pricing" class="pricing section-bg" *ngIf="sh == 1">
   <div class="recepcion" data-aos="fade-up">
     <div class="section-title">
       <h2>Percepción de los Usuarios</h2>
-      <h4>La media de los usuarios piensan que el aplicativo es:</h4>
+      <h4>
+        <b>{{ total_comentarios }} </b> usuarios piensan que el aplicativo es:
+      </h4>
     </div>
+    <h3 style="text-align: center; font-size: 40px"><b>Cliente</b></h3>
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div
-          class="box"
+          class="box colorboxbad"
           data-aos="fade-up"
           data-aos-delay="100"
-          style="font-size: 44px"
+          style="font-size: 30px"
         >
           <b><p>Negativo</p></b>
-          <i class="fas fa-sad-cry" style="font-size: 250px"></i>
+          <i class="fas fa-sad-cry" style="font-size: 180px"></i>
           <h4>
             <b>{{ negativo }} %</b>
           </h4>
@@ -142,9 +133,13 @@
       </div>
 
       <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="200">
+        <div
+          class="box colorboxneutral"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           <b><p>Neutral</p></b>
-          <i class="fas fa-meh" style="font-size: 250px"></i>
+          <i class="fas fa-meh" style="font-size: 180px"></i>
           <h4>
             <b>{{ neutral }} %</b>
           </h4>
@@ -152,11 +147,62 @@
       </div>
 
       <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="300">
+        <div
+          class="box colorboxpositivo"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           <b><p>Positivo</p></b>
-          <i class="fas fa-smile" style="font-size: 250px"></i>
+          <i class="fas fa-smile" style="font-size: 180px"></i>
           <h4>
             <b>{{ positivo }} %</b>
+          </h4>
+        </div>
+      </div>
+    </div>
+    <h3 style="text-align: center; font-size: 40px; margin-top: 20px">
+      <b>Condutor</b>
+    </h3>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="box colorboxbad"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style="font-size: 44px"
+        >
+          <b><p>Negativo</p></b>
+          <i class="fas fa-sad-cry" style="font-size: 180px"></i>
+          <h4>
+            <b>{{ negativo_conductor }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+        <div
+          class="box colorboxneutral"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <b><p>Neutral</p></b>
+          <i class="fas fa-meh" style="font-size: 180px"></i>
+          <h4>
+            <b>{{ neutro_conductor }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+        <div
+          class="box colorboxpositivo"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <b><p>Positivo</p></b>
+          <i class="fas fa-smile" style="font-size: 180px"></i>
+          <h4>
+            <b>{{ positivo_conductor }} %</b>
           </h4>
         </div>
       </div>
@@ -176,10 +222,28 @@
           De los <b>{{ total_comentarios }} </b> comentarios analizados se ha
           puede observar que la media de calificacines dejadas por los usuarios
         </h4>
-        <p href="#">
-          {{ average_notes }} / 5
-          <i class="fas fa-star" style="color: #fabd2f; font-size: 80px"></i>
-        </p>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
+            <p style="color: white"><b>Clientes</b></p>
+            <p href="#">
+              {{ average_notes }} / 5
+              <i
+                class="fas fa-star"
+                style="color: #fabd2f; font-size: 80px"
+              ></i>
+            </p>
+          </div>
+          <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
+            <p style="color: white"><b>Conductores</b></p>
+            <p href="#">
+              {{ average_notes_conductor }} / 5
+              <i
+                class="fas fa-star"
+                style="color: #fabd2f; font-size: 80px"
+              ></i>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -189,7 +253,7 @@
 <section id="calificacion" class="pricing section-bg" *ngIf="sh == 1">
   <div class="container2" data-aos="fade-up">
     <div class="section-title">
-      <h2>Calificación del aplicativo</h2>
+      <h2>Valoración del aplicativo Según los conductores</h2>
       <h4>
         Las <b>{{ total_comentarios }} </b> personas que emplean las siguientes
         palabras para describir el servicio al momento de calificarlo
@@ -388,3 +452,113 @@
   </div>
 </section>
 <!-- Final caliifación-->
+<section id="calificacion" class="pricing section-bg" *ngIf="sh == 1">
+  <div class="container2" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Valoración del aplicativo Según los conductores</h2>
+      <h4>
+        Se ha registrado un total de <b>{{ total_comentarios }} </b> conductores
+        que han calificado el estado del aplicativo a través del siguiente
+        puntaje
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-12">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="far fa-star stars" style="font-size: 150px"></i>
+          <h4>
+            <b>{{ valoracion_0c }} %</b>
+          </h4>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star stars" style="font-size: 150px"></i>
+          <h4>
+            <b>{{ valoracion_1c }} %</b>
+          </h4>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <h4>
+            <b>{{ valoracion_2c }} %</b>
+          </h4>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 75px"></i>
+          <h4>
+            <b>{{ valoracion_3c }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-md-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="200">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 5px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 5px 10px"
+          ></i>
+          <br />
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 10px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 75px; padding: 0px 0px 0px 10px"
+          ></i>
+
+          <h4>
+            <b>{{ valoracion_4c }} %</b>
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mt-4 mt-lg-0">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <br />
+          <i class="fas fa-star stars" style="font-size: 50px"></i>
+          <br />
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 20px 0px 0px"
+          ></i>
+          <i
+            class="fas fa-star stars"
+            style="font-size: 50px; padding: 0px 0px 0px 20px"
+          ></i>
+          <h4>
+            <b>{{ valoracion_5c }} %</b>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

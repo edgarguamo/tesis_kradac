@@ -7,7 +7,7 @@
 }
 
 h4 {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .box-2 {
@@ -91,7 +91,7 @@ select {
 Percepción
 */
 .recepcion p {
-  font-size: 40px;
+  font-size: 32px;
 }
 /* 
 Valoracion
@@ -185,6 +185,7 @@ Valoracion
 .badextendedCero.great {
   background: #de7834;
 }
+
 .box h4 {
   margin-top: 10px;
 }
@@ -208,7 +209,7 @@ Valoracion
   text-align: center;
 }
 .average b {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .box:hover {
@@ -228,4 +229,14 @@ Valoracion
   -webkit-transform-style: preserve-3d;
   transform: rotateY(180deg);
   transform-style: preserve-3d;
+}
+
+.colorboxbad {
+  background-color: #e03a3c;
+}
+.colorboxneutral {
+  background-color: #d79921;
+}
+.colorboxpositivo {
+  background-color: #98971a;
 }
