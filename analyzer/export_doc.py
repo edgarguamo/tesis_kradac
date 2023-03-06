@@ -20,3 +20,4 @@ def export_json():
         file_data = json.load(file)
 
     collection.insert_many(file_data)
+    print('documentos cargados')

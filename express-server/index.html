@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Carga De Archivos</title>
+  </head>
+  <body>
+    <p>
+      Cuál es la estructura del archivo? Click
+      <a href="/api/template">Aquí</a> para imprimir un ejemplo
+    </p>
+    <form action="/api/template" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=" .csv" />
+      <br /><br />
+      <input type="submit" value="Cargar Archivos" />
+    </form>
+  </body>
+</html>

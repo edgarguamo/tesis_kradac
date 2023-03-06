@@ -8,8 +8,6 @@ var UsuariosComentariosSchema = new Schema({
   },
   IdUsuarioAtendio: Number,
   FechaHoraRegistro: String,
-  //Fecha: String,
-  //Hora: String,
   ComentarioCliente: String,
   ComentarioConductor: String,
   ValoracionCliente: Number,
@@ -61,12 +59,6 @@ UsuariosComentariosSchema.statics.filter = function (
   );
 };
 UsuariosComentariosSchema.statics.getAllTest = function (data, cb) {
-  //const query = new mongoose.Query();
-  console.log(fechaFin);
-  var fechaFin = new Date(data.FechaFin);
-  fechaFin.setTime(fechaFin.getTime() + 86400000);
-  fechaFin = fechaFin.toString();
-  console.log(fechaFin);
   switch (data.TipoConsulta) {
     //Consulta por contenido
     case "3":

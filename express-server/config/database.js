@@ -3,16 +3,6 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 //Set up default mongoose connection
 var mongoDB = process.env.MONGO_URI;
-// mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-// // Get Mongoose to use the global promise library
-// mongoose.Promise = global.Promise;
-// // Get the default connection
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// db.once('open', function() {
-//   // we're connected!
-//   console.info("MongoDB connection successfull");
-// });
 
 exports.connect = () => {
     // Connecting to the database
