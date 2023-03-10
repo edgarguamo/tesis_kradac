@@ -36,7 +36,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
-//import { UploadfilesComponent } from './uploadfiles/uploadfiles.component'; 
+import { UploadfilesComponent } from './components/home/section/uploadfiles/uploadfiles.component'; 
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import {MatTableModule} from '@angular/material/table';
 		ContactComponent,
 		GraficaComponent,
 		FormgraphComponent,
-		//UploadfilesComponent,
+		UploadfilesComponent,
 		
 	],
 	imports: [

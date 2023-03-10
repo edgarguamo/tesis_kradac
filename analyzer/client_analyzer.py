@@ -21,7 +21,7 @@ def train_analyzer(train_text, test_text, train_labels, test_labels, sentences):
             intercept_scaling=2, loss='hinge', max_iter=1000,
             multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
             verbose=1)
-
+  
   classifier.fit(train_X, train_labels)
   '''
   predicciones_test = classifier.predict(test_X)

@@ -45,20 +45,25 @@ exports.pushData = function (req, res) {
       FileData.create(comments, function (err, documents) {
         if (err) throw err;
       });
-      res.send(comments.length + " comments have been successfully uploaded.");
+
+        const spawn = require('child_process').spawn;
+        const pythonProcess = spawn('python', ['../analyzer/main.py']);
+        let pythonResponse = '';
+    
+        pythonProcess.stdout.on('data', async function(data){
+          pythonResponse += await data.toString();
+          
+        });
+
+        pythonProcess.stdout.on('end', async function(){
+          console.log(pythonResponse);
+          final_msg = pythonResponse.substring(pythonResponse.indexOf(']')+1)
+          await res.send(final_msg);
+        });
+        
+        pythonProcess.stdin.write(comments.length.toString());
+        pythonProcess.stdin.end();
     });
 
-  try{
-    const spawn = require('child_process').spawn;
-    const pythonProcess = spawn('python', ['./analyzer/main.py']);
-    let pythonResponse = '';
 
-    pythonProcess.stdout.on('data', function(data){
-      pythonResponse += data.toString()
-    });
-    pythonProcess.stdout.on('end');
-    console.log(pythonResponse)
-  }catch{
-    console.log('fallo en la carga de archivos al sistema')
-  }
 };

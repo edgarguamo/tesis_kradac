@@ -1,0 +1,4 @@
+id_usuario_atendio,fecha_hora_registro,observacion,observacion_conductor,valoracion,valoracion_conductor,CalificacionClientes,ComentarioConductor
+28039,2022-08-01 00:00:12,Si    Velocidad excesiva, ,5,0.0,Negativo,Neutral
+29071,2022-08-01 00:00:27,Excelente  , ,0,3.0,Positivo,Neutral
+9173,2022-08-01 00:00:21,   Atento y cordial  Viaje agradable  Puntualidad, ,1,1.0,Positivo,Neutral

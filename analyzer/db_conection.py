@@ -9,7 +9,6 @@ def db_conect():
     try:
         # The ping command is cheap and does not require auth.
         client.admin.command('ping')
-        print('conexión exitosa')
     except ConnectionFailure:
         print("Server not available")
     return client

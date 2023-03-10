@@ -56,10 +56,9 @@ export class GraficaComponent {
       backgroundColor: [this.colorsChart[4]],
     },
   ];
-  chartType = 'bar';
+  chartType = 'polarArea';
   fecha_inical = '1 de Enero del 2021';
   fecha_final = '31 de Enero del 2021';
-
   chartLabels = ['Negativo', 'Positivo', 'Neutral'];
   // opciones para generar la gráfica
   chartColors = [
@@ -135,6 +134,18 @@ export class GraficaComponent {
   datos_grafica = [[], [], []];
   average_notes = '3.5';
   average_notes_conductor = '2.2';
+  //Podium
+  podium1 = '40';
+  podium2 = '20';
+  podium3 = '34';
+  podium4 = '21';
+  podium5 = '22';
+  conductor1 = '12334';
+  conductor2 = '24';
+  conductor3 = '6784';
+  conductor4 = '84';
+  conductor5 = '954';
+  numConductor ="1206";
   /*
     Fin Variables
   */
@@ -230,9 +241,49 @@ export class GraficaComponent {
         {}
       )
     );
-    console.log(this.listDataset);
 
-    if (this.userQuery.TipoConsulta === '3') {
+    let conductores = Object.entries(
+      this.listDataset.reduce(
+        (aux, d) => (
+          aux[d.IdUsuarioAtendio]
+            ? (aux[d.IdUsuarioAtendio] += 1)
+            : (aux[d.IdUsuarioAtendio] = 1),
+          aux
+        ),
+        {}
+      )
+    );
+    /*
+    podio
+    */
+    
+    let podium_data = conductores
+      .sort(function (a, b) {
+        if (a[1] > b[1]) {
+          return -1;
+        }
+        if (a[1] < b[1]) {
+          return 1;
+        }
+        return 0;
+      })
+      .slice(0, 5);
+    
+    this.numConductor = conductores.length.toString();
+    console.log(this.numConductor);
+    this.podium1 = podium_data[0][1] as string;
+    this.podium2 = podium_data[1][1] as string;
+    this.podium3 = podium_data[2][1] as string;
+    this.podium4 = podium_data[3][1] as string;
+    this.podium5 = podium_data[4][1] as string;
+
+    this.conductor1 = podium_data[0][0];
+    this.conductor2 = podium_data[1][0];
+    this.conductor3 = podium_data[2][0];
+    this.conductor4 = podium_data[3][0];
+    this.conductor5 = podium_data[4][0];
+
+    if (this.userQuery.TipoConsulta === '1') {
       switch (this.chartType) {
         case 'bar':
           this.chartData = [
@@ -303,10 +354,93 @@ export class GraficaComponent {
             defaultquery[1][0],
             defaultquery[2][0],
           ];
+          this.colorsChart = [
+                'rgba(254, 128, 25, 1)',
+                'rgba(250, 189, 47, 1)',
+                'rgba(184, 187, 38, 1)',
+              ];
+          break;
+      }
+    } else if (this.userQuery.TipoConsulta === '2') {
+      switch (this.chartType) {
+        case 'bar':
+          this.chartData = [
+            {
+              data: [defaultquery[0][1] as number],
+              label: [defaultquery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
+            },
+            {
+              data: [defaultquery[1][1] as number],
+              label: [defaultquery[1][0]],
+              backgroundColor: [this.colorsChart[2]],
+            },
+            {
+              data: [defaultquery[2][1] as number],
+              label: [defaultquery[2][0]],
+              backgroundColor: [this.colorsChart[4]],
+            },
+          ];
+          this.chartLabels = [`${this.fecha_inical} - ${this.fecha_final}`];
+          break;
+        case 'line':
+          this.chartData = [
+            {
+              data: [0, defaultquery[0][1] as number],
+              label: [defaultquery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
+            },
+            {
+              data: [0, defaultquery[1][1] as number],
+              label: [defaultquery[1][0]],
+              backgroundColor: [this.colorsChart[2]],
+            },
+            {
+              data: [0, defaultquery[2][1] as number],
+              label: [defaultquery[2][0]],
+              backgroundColor: [this.colorsChart[4]],
+            },
+          ];
+          this.chartLabels = [
+            defaultquery[0][0],
+            defaultquery[1][0],
+            defaultquery[2][0],
+          ];
+          break;
+        default:
+          this.chartData = [
+            {
+              data: [
+                defaultquery[1][1] as number,
+                defaultquery[0][1] as number,
+                defaultquery[2][1] as number,
+              ],
+              label: [
+                defaultquery[0][0],
+                defaultquery[1][0],
+                defaultquery[2][0],
+              ],
+              backgroundColor: [
+                'rgba(254, 128, 25, 1)',
+                'rgba(250, 189, 47, 1)',
+                'rgba(184, 187, 38, 1)',
+              ],
+            },
+          ];
+          this.chartLabels = [
+            defaultquery[0][0],
+            defaultquery[1][0],
+            defaultquery[2][0],
+          ];
+          this.colorsChart = [
+            'rgba(254, 128, 25, 1)',
+            'rgba(250, 189, 47, 1)',
+            'rgba(184, 187, 38, 1)',
+          ];
 
           break;
       }
-    } else {
+    } else if (this.userQuery.TipoConsulta === '3') {
       switch (this.chartType) {
         case 'bar':
           this.chartData = [
@@ -424,6 +558,124 @@ export class GraficaComponent {
           ];
           break;
       }
+    }else  {
+      switch (this.chartType) {
+        case 'bar':
+          this.chartData = [
+            {
+              data: [valorConductorQuery[0][1] as number],
+              label: [valorConductorQuery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
+            },
+            {
+              data: [valorConductorQuery[1][1] as number],
+              label: [valorConductorQuery[1][0]],
+              backgroundColor: [this.colorsChart[1]],
+            },
+            {
+              data: [valorConductorQuery[2][1] as number],
+              label: [valorConductorQuery[2][0]],
+              backgroundColor: [this.colorsChart[2]],
+            },
+            {
+              data: [valorConductorQuery[3][1] as number],
+              label: [valorConductorQuery[3][0]],
+              backgroundColor: [this.colorsChart[3]],
+            },
+            {
+              data: [valorConductorQuery[4][1] as number],
+              label: [valorConductorQuery[4][0]],
+              backgroundColor: [this.colorsChart[4]],
+            },
+            {
+              data: [valorConductorQuery[5][1] as number],
+              label: [valorConductorQuery[5][0]],
+              backgroundColor: [this.colorsChart[5]],
+            },
+          ];
+          this.chartLabels = [`${this.fecha_inical} - ${this.fecha_final}`];
+          break;
+        case 'line':
+          this.chartData = [
+            {
+              data: [0, valorConductorQuery[0][1] as number],
+              label: [valorConductorQuery[0][0]],
+              backgroundColor: [this.colorsChart[0]],
+            },
+            {
+              data: [0, valorConductorQuery[1][1] as number],
+              label: [valorConductorQuery[1][0]],
+              backgroundColor: [this.colorsChart[1]],
+            },
+            {
+              data: [0, valorConductorQuery[2][1] as number],
+              label: [valorConductorQuery[2][0]],
+              backgroundColor: [this.colorsChart[2]],
+            },
+            {
+              data: [0, valorConductorQuery[3][1] as number],
+              label: [valorConductorQuery[3][0]],
+              backgroundColor: [this.colorsChart[3]],
+            },
+            {
+              data: [0, valorConductorQuery[4][1] as number],
+              label: [valorConductorQuery[4][0]],
+              backgroundColor: [this.colorsChart[4]],
+            },
+            {
+              data: [0, valorConductorQuery[5][1] as number],
+              label: [valorConductorQuery[5][0]],
+              backgroundColor: [this.colorsChart[5]],
+            },
+          ];
+          this.chartLabels = [
+            valorConductorQuery[0][0],
+            valorConductorQuery[1][0],
+            valorConductorQuery[2][0],
+            valorConductorQuery[3][0],
+            valorConductorQuery[4][0],
+            valorConductorQuery[5][0],
+          ];
+          break;
+        default:
+          this.chartData = [
+            {
+              data: [
+                valorConductorQuery[1][1] as number,
+                valorConductorQuery[0][1] as number,
+                valorConductorQuery[2][1] as number,
+                valorConductorQuery[3][1] as number,
+                valorConductorQuery[4][1] as number,
+                valorConductorQuery[5][1] as number,
+              ],
+              label: [
+                valorConductorQuery[0][0],
+                valorConductorQuery[1][0],
+                valorConductorQuery[2][0],
+                valorConductorQuery[3][0],
+                valorConductorQuery[4][0],
+                valorConductorQuery[5][0],
+              ],
+              backgroundColor: [
+                this.colorsChart[0],
+                this.colorsChart[1],
+                this.colorsChart[2],
+                this.colorsChart[3],
+                this.colorsChart[4],
+                this.colorsChart[5],
+              ],
+            },
+          ];
+          this.chartLabels = [
+            valorConductorQuery[0][0],
+            valorConductorQuery[1][0],
+            valorConductorQuery[2][0],
+            valorConductorQuery[3][0],
+            valorConductorQuery[4][0],
+            valorConductorQuery[5][0],
+          ];
+          break;
+      }
     }
     console.log(this.chartLabels);
     /* 
@@ -475,7 +727,7 @@ export class GraficaComponent {
       (valorQuery[3][1] as number) +
       (valorQuery[4][1] as number) +
       (valorQuery[5][1] as number);
-      console.log(total_calificacion);
+    console.log(total_calificacion);
     this.total_comentarios = total;
 
     this.average_notes = (
@@ -503,6 +755,34 @@ export class GraficaComponent {
       total_calificacion_c
     ).toFixed(2);
     console.log(this.average_notes_conductor);
+    /*
+    Valoracion Cliente
+    */
+    this.valoracion_0 = (
+      ((valorQuery[0][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
+    this.valoracion_1 = (
+      ((valorQuery[1][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
+    this.valoracion_2 = (
+      ((valorQuery[2][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
+    this.valoracion_3 = (
+      ((valorQuery[3][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
+    //this.valoracion_3 = '12.3';
+    this.valoracion_4 = (
+      ((valorQuery[4][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
+    this.valoracion_5 = (
+      ((valorQuery[5][1] as number) * 100) /
+      this.total_comentarios
+    ).toFixed(2);
 
     /*
        Valoración de los usuarios 
@@ -511,7 +791,7 @@ export class GraficaComponent {
       ((valorConductorQuery[0][1] as number) * 100) /
       this.total_comentarios
     ).toFixed(2);
-    this.valoracion_1c= (
+    this.valoracion_1c = (
       ((valorConductorQuery[1][1] as number) * 100) /
       this.total_comentarios
     ).toFixed(2);
@@ -553,13 +833,20 @@ export class GraficaComponent {
         this.userQuery.FechaHoraFin
       );
     }
+
     if (this.userQuery.FechaHoraFin === undefined) {
       this.titleChart = `Percepción de comentarios de clientes del \n ${this.fecha_inical} al ${this.fecha_final}`;
     } else {
-      if (this.userQuery.TipoConsulta === '3') {
-        this.titleChart = `Percepción de comentarios de Clientes del \n ${this.fecha_inical} al ${this.fecha_final}`;
+      if (this.userQuery.TipoConsulta === '1') {
+        this.titleChart = `Percepción de comentarios de Conductores del \n ${this.fecha_inical} al ${this.fecha_final}`;
+      } else if (this.userQuery.TipoConsulta === '2') {
+        this.titleChart = `Percepción de comentarios de Clientes del \n${this.fecha_inical} al ${this.fecha_final}`;
+      } else if (this.userQuery.TipoConsulta === '3') {
+        this.titleChart = `Valoración de Clientes del \n${this.fecha_inical} al ${this.fecha_final}`;
+      } else if (this.userQuery.TipoConsulta === '4') {
+        this.titleChart = `Valoración de Conductores del \n${this.fecha_inical} al ${this.fecha_final}`;
       } else {
-        this.titleChart = `Percepción de comentarios de Choferes ${this.userQuery.FechaHoraRegistro} al ${this.userQuery.FechaHoraFin}`;
+        this.titleChart = `Percepción de comentarios de clientes del \n ${this.fecha_inical} al ${this.fecha_final}`
       }
     }
   }

@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadfilesComponent implements OnInit {
 
+  modalSwitch:boolean;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openModal(){
+    this.modalSwitch = true;
   }
 
 }

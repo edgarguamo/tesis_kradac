@@ -48,10 +48,12 @@
           ng-model="userQuery.TipoConsulta"
           [(ngModel)]="userQuery.TipoConsulta"
         >
-          <option value="3" ng-selected="userQuery.TipoConsulta">
-            Por Percepción
+          <option value="1" ng-selected="userQuery.TipoConsulta">
+            Conductores
           </option>
-          <option value="2">Por Calificación</option>
+          <option value="2">Clientes</option>
+          <option value="3">Valoración Clientes</option>
+          <option value="4">Valoración Conductores</option>
         </select>
 
         <label for="tipografica"
@@ -84,7 +86,7 @@
           placeholder="Ej: 2021-01-01"
           [(ngModel)]="userQuery.FechaHoraRegistro"
           min="2021-01-01"
-          max="2022-08-31"
+          max="2022-09-01"
         />
         <br /><br />
         <label for="date"><b>Fecha Final</b></label> <br />
@@ -161,7 +163,7 @@
       </div>
     </div>
     <h3 style="text-align: center; font-size: 40px; margin-top: 20px">
-      <b>Condutor</b>
+      <b>Conductor</b>
     </h3>
     <div class="row">
       <div class="col-lg-4 col-md-6">
@@ -253,7 +255,7 @@
 <section id="calificacion" class="pricing section-bg" *ngIf="sh == 1">
   <div class="container2" data-aos="fade-up">
     <div class="section-title">
-      <h2>Valoración del aplicativo Según los conductores</h2>
+      <h2>Valoración del aplicativo Según los Clientes</h2>
       <h4>
         Las <b>{{ total_comentarios }} </b> personas que emplean las siguientes
         palabras para describir el servicio al momento de calificarlo
@@ -451,114 +453,36 @@
     </div>
   </div>
 </section>
-<!-- Final caliifación-->
-<section id="calificacion" class="pricing section-bg" *ngIf="sh == 1">
-  <div class="container2" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Valoración del aplicativo Según los conductores</h2>
-      <h4>
-        Se ha registrado un total de <b>{{ total_comentarios }} </b> conductores
-        que han calificado el estado del aplicativo a través del siguiente
-        puntaje
-      </h4>
+<section class ="podium section-bg">
+  <div class="section-title">
+    <h2>Conductores con más Carreras hechas</h2>
+    <h4>
+      <b>De los {{ total_comentarios }} </b> carreras realizadas los 5 <br/>conductores con más carreras hechas son:
+    </h4>
+  </div>
+  <div class="all">
+    <div class="lefter">
+      <p><br /> {{podium4}}</p>
+      <div class="text">Conductor {{conductor4}}</div>
     </div>
-    <div class="row">
-      <div class="col-lg-2 col-md-12">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="far fa-star stars" style="font-size: 150px"></i>
-          <h4>
-            <b>{{ valoracion_0c }} %</b>
-          </h4>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-star stars" style="font-size: 150px"></i>
-          <h4>
-            <b>{{ valoracion_1c }} %</b>
-          </h4>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-star stars" style="font-size: 75px"></i>
-          <br />
-          <i class="fas fa-star stars" style="font-size: 75px"></i>
-          <h4>
-            <b>{{ valoracion_2c }} %</b>
-          </h4>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <div class="box" data-aos="fade-up" data-aos-delay="100">
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 10px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 0px 0px 10px"
-          ></i>
-          <br />
-          <i class="fas fa-star stars" style="font-size: 75px"></i>
-          <h4>
-            <b>{{ valoracion_3c }} %</b>
-          </h4>
-        </div>
-      </div>
+    <div class="left">
+      <p><br /> {{podium2}}</p>
+      <div class="text"> conductor {{conductor2}}</div>
+    </div>
+    <div class="center">
+      <p><br /> {{podium1}} </p>
+      <div class="explainer"><span>Conductores</span></div>
 
-      <div class="col-lg-2 col-md-6 mt-4 mt-md-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="200">
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 10px 5px 0px"
-          ></i>
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 0px 5px 10px"
-          ></i>
-          <br />
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 10px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star stars"
-            style="font-size: 75px; padding: 0px 0px 0px 10px"
-          ></i>
-
-          <h4>
-            <b>{{ valoracion_4c }} %</b>
-          </h4>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-6 mt-4 mt-lg-0">
-        <div class="box" data-aos="fade-up" data-aos-delay="300">
-          <i
-            class="fas fa-star stars"
-            style="font-size: 50px; padding: 0px 20px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star stars"
-            style="font-size: 50px; padding: 0px 0px 0px 20px"
-          ></i>
-          <br />
-          <i class="fas fa-star stars" style="font-size: 50px"></i>
-          <br />
-          <i
-            class="fas fa-star stars"
-            style="font-size: 50px; padding: 0px 20px 0px 0px"
-          ></i>
-          <i
-            class="fas fa-star stars"
-            style="font-size: 50px; padding: 0px 0px 0px 20px"
-          ></i>
-          <h4>
-            <b>{{ valoracion_5c }} %</b>
-          </h4>
-        </div>
-      </div>
+      <div class="text">Conductor {{conductor1}}</div>
+    </div>
+    <div class="right">
+      <p><br /> {{podium3}}</p>
+      <div class="text">Conductor {{conductor3}}</div>
+    </div>
+    <div class="righter">
+      <p><br />{{podium5}}</p>
+      <div class="text"><br/>Conductor {{conductor5}}</div>
     </div>
   </div>
 </section>
+<!-- Final caliifación-->

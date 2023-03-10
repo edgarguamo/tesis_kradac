@@ -19,7 +19,6 @@ var UsuariosComentariosSchema = new Schema({
 //Calificacion en funcion de la fecha
 
 UsuariosComentariosSchema.statics.getAll = function (cb) {
-
   this.find(
     {
       FechaHoraRegistro: {
@@ -59,138 +58,38 @@ UsuariosComentariosSchema.statics.filter = function (
   );
 };
 UsuariosComentariosSchema.statics.getAllTest = function (data, cb) {
-  switch (data.TipoConsulta) {
-    //Consulta por contenido
-    case "3":
-      //Consulta solo por valoracion clientes
-      if (
-        data.ValoracionCliente !== undefined ||
-        data.ValoracionChoferes === undefined
-      ) {
-        console.log("consulta solo choferes");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-
-            ValoracionClientes: parseInt(data.ValoracionClientes),
-          },
-          cb
-        );
-        break;
-      }
-      //Consulta solo por valoracion choferes
-      if (
-        data.ValoracionCliente === undefined ||
-        data.ValoracionChoferes !== undefined
-      ) {
-        console.log("consulta solo cliente");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-            ValoracionChoferes: parseInt(data.ValoracionChoferes),
-          },
-          cb
-        );
-        break;
-      }
-      //Consulta solo por valoracion clientes y valoracion choferes
-      if (
-        data.ValoracionCliente !== undefined ||
-        data.ValoracionChoferes !== undefined
-      ) {
-        console.log("consulta de test");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-            ValoracionChoferes: parseInt(data.ValoracionChoferes),
-            ValoracionClientes: parseInt(data.ValoracionClientes),
-          },
-          cb
-        );
-        break;
-      }
-      //Consulta solo por fecha
-      if (
-        data.ValoracionCliente === undefined ||
-        data.ValoracionChoferes === undefined
-      ) {
-        console.log("consulta de test solo fecha");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-          },
-          cb
-        );
-        break;
-      }
-      break;
-    case "2":
-      if (
-        data.ValoracionCinicial !== undefined ||
-        data.ValoracionCfinal !== undefined
-      ) {
-        console.log("consulta valoracion choferes");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-            ValoracionClientes:{
-              $gte: data.ValoracionCinicial,
-              $lte: data.ValoracionCfinal
-          },
+  if (data.TipoConsulta !== undefined) {
+    console.log("consulta de test solo fecha");
+    this.find(
+      {
+        FechaHoraRegistro: {
+          $gte: data.FechaInicio,
+          $lte: data.FechaFin,
         },
-          cb
-        );
-        break;
-      }
-if (
-        data.ValoracionCinicial !== undefined ||
-        data.ValoracionCfinal !== undefined
-      ) {
-        console.log("consulta valoracion choferes");
-        this.find(
-          {
-            FechaHoraRegistro: {
-              $gte: data.FechaInicio,
-              $lte: data.FechaFin,
-            },
-            ValoracionClientes: parseInt(data.ValoracionCinicial),
-          },
-          cb
-        );
-        break;
-      }
-    default:
-      console.log("consulta por defecto solo por fecha");
-     /*
-      var tiempo = Date.now();
-      var hoy = new Date(tiempo).toISOString();
-      console.log(hoy.substring(0,12));
-      */
-      this.find(
-        {
-          FechaHoraRegistro: {
-            $gte: "2021-01-01",
-            $lte: "2021-01-31",
-          },
+      },
+      {
+        ComentarioCliente: 0,
+        ComentarioConductor: 0,
+        FechaHoraRegistro: 0,
+      },
+      cb
+    );
+  } else {
+    console.log("consulta por defecto solo por fecha");
+    this.find(
+      {
+        FechaHoraRegistro: {
+          $gte: "2021-01-01",
+          $lte: "2021-01-31",
         },
-        cb
-      );
-      break;
+      },
+      {
+        ComentarioCliente: 0,
+        ComentarioConductor: 0,
+        FechaHoraRegistro: 0,
+      },
+      cb
+    );
   }
 };
 
