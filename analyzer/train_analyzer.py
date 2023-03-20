@@ -41,8 +41,10 @@ def train():
     print(resultados)
     resultados.to_csv('resultados.csv', index=False, encoding='utf-8')
     resultados.to_json("./datos/resultados.json", orient = "records",force_ascii=False,)
+    '''
     comentarios =resultados.to_dict('records')   
     export_doc.export_json(comentarios)
+    '''
 
 def analize_comments():
     json_client = col_client.find({}, {"_id": 0,"comentario":1, "equivalente":1})
@@ -69,7 +71,9 @@ def analize_comments():
     resultados['ComentarioConductor']='Neutral'
     
     data =resultados.to_dict('records')   
-    new_comments.drop()
+    
+
+    new_comments.drop() # Eliminación de colección comentarios_sin_calificar
     export_doc.export_json(data)
 
     cantidad_inicial = sys.stdin.readline()

@@ -27,15 +27,25 @@ def train_analyzer(train_text, test_text, train_labels, test_labels, sentences):
   predicciones_test = classifier.predict(test_X)
   accuracy = accuracy_score(test_labels, predicciones_test)
   '''
+  print(vector)
+  print(train_X)
+  print("df")
+  print(df)
   comentarios_calificados = vector.transform(sentences) 
+  print("comentarios_calificados")
+  print(comentarios_calificados)
   predicciones = classifier.predict(comentarios_calificados)
-
+  print("preddicciones")
+  print(predicciones)
 
   lista_final_SVC_cliente = []
   for text, label in zip(comentarios_calificados, predicciones):
       diccionario = {"pola": label, "texto": text}
       lista_final_SVC_cliente.append(diccionario)
   data_SVC_cliente = pd.DataFrame.from_records(lista_final_SVC_cliente)
+  print(diccionario)
+  print("data_SVC_Cliente")
+  print(data_SVC_cliente)
 
   df_predicciones = pd.DataFrame(predicciones, columns=['CalificacionClientes'])
 

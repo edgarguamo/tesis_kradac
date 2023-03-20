@@ -11,9 +11,6 @@
         data-aos-delay="200"
         style="position: relative; height: 100%"
       >
-        <p style="font-size: 20px">
-          Número de Personas analizadas: <b>{{ total_comentarios }} </b>
-        </p>
         <div class="col-lg-12 entries">
           <article class="entry">
             <div class="row">
@@ -33,6 +30,11 @@
               </div>
             </div>
           </article>
+          <div>
+            <p style="font-size: 20px">
+              {{ reportes_principal }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -113,11 +115,16 @@
   <div class="recepcion" data-aos="fade-up">
     <div class="section-title">
       <h2>Percepción de los Usuarios</h2>
-      <h4>
-        <b>{{ total_comentarios }} </b> usuarios piensan que el aplicativo es:
-      </h4>
     </div>
     <h3 style="text-align: center; font-size: 40px"><b>Cliente</b></h3>
+    <br />
+    <h4 class="reporte">
+      De los <b>{{ total_comentarios }}</b> comentarios registrados durante el
+      <b>{{ fecha_inical }} al {{ fecha_final }}</b> los clientes percibieron el
+      servicio de taxi ofrecido por la aplicación Ktaxi es un
+      <b>{{ negativo }}%</b> negativo, <b>{{ neutral }}%</b> neutral y un
+      <b>{{ positivo }}%</b> positivo.
+    </h4>
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div
@@ -162,9 +169,19 @@
         </div>
       </div>
     </div>
+
     <h3 style="text-align: center; font-size: 40px; margin-top: 20px">
       <b>Conductor</b>
     </h3>
+    <br />
+    <h4 class="reporte">
+      De los <b>{{ total_comentarios }}</b> comentarios registrados durante el
+      <b>{{ fecha_inical }} al {{ fecha_final }}</b> los conductores perciben el
+      servicio de taxi ofrecido por la aplicación Ktaxi es un
+      <b>{{ negativo_conductor }}%</b> negativo,
+      <b>{{ neutro_conductor }}%</b> neutral y un
+      <b>{{ positivo_conductor }}%</b> positivo.
+    </h4>
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div
@@ -221,14 +238,18 @@
     <div class="row average">
       <div class="average">
         <h4>
-          De los <b>{{ total_comentarios }} </b> comentarios analizados se ha
-          puede observar que la media de calificacines dejadas por los usuarios
+          Al momento de calcular el promedio de los
+          <b>{{ total_comentarios }}</b> comentarios realizados a partir del
+          <b>{{ this.fecha_inical }} hasta el {{ fecha_final }}</b> se
+          identifico que tanto los clientes como los conductores valoran al
+          aplicativo con los siguientes valores
         </h4>
         <div class="row">
           <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
             <p style="color: white"><b>Clientes</b></p>
             <p href="#">
               {{ average_notes }} / 5
+
               <i
                 class="fas fa-star"
                 style="color: #fabd2f; font-size: 80px"
@@ -257,8 +278,9 @@
     <div class="section-title">
       <h2>Valoración del aplicativo Según los Clientes</h2>
       <h4>
-        Las <b>{{ total_comentarios }} </b> personas que emplean las siguientes
-        palabras para describir el servicio al momento de calificarlo
+        De los <b>{{ total_comentarios }}</b> comentarios realizados durante el
+        lapso de tiempo del {{ fecha_inical }} al <b>{{ fecha_final }}</b> por
+        los usuarios han valorizado la aplicación empleando el siguiente rango:
       </h4>
     </div>
     <div class="row">
@@ -453,35 +475,48 @@
     </div>
   </div>
 </section>
-<section class ="podium section-bg">
+<section class="podium section-bg">
   <div class="section-title">
     <h2>Conductores con más Carreras hechas</h2>
     <h4>
-      <b>De los {{ total_comentarios }} </b> carreras realizadas los 5 <br/>conductores con más carreras hechas son:
+      <b>De las {{ total_comentarios }} </b> carreras realizadas, los 5
+      <br />conductores con más carreras hechas son:
     </h4>
   </div>
   <div class="all">
     <div class="lefter">
-      <p><br /> {{podium4}}</p>
-      <div class="text">Conductor {{conductor4}}</div>
+      <p>
+        <br />
+        {{ podium4 }}
+      </p>
+      <div class="text">Conductor {{ conductor4 }}</div>
     </div>
     <div class="left">
-      <p><br /> {{podium2}}</p>
-      <div class="text"> conductor {{conductor2}}</div>
+      <p>
+        <br />
+        {{ podium2 }}
+      </p>
+      <div class="text">conductor {{ conductor2 }}</div>
     </div>
     <div class="center">
-      <p><br /> {{podium1}} </p>
+      <p>
+        <br />
+        {{ podium1 }}
+      </p>
       <div class="explainer"><span>Conductores</span></div>
 
-      <div class="text">Conductor {{conductor1}}</div>
+      <div class="text">Conductor {{ conductor1 }}</div>
     </div>
     <div class="right">
-      <p><br /> {{podium3}}</p>
-      <div class="text">Conductor {{conductor3}}</div>
+      <p>
+        <br />
+        {{ podium3 }}
+      </p>
+      <div class="text">Conductor {{ conductor3 }}</div>
     </div>
     <div class="righter">
-      <p><br />{{podium5}}</p>
-      <div class="text"><br/>Conductor {{conductor5}}</div>
+      <p><br />{{ podium5 }}</p>
+      <div class="text"><br />Conductor {{ conductor5 }}</div>
     </div>
   </div>
 </section>

@@ -30,6 +30,7 @@
     "chartjs-plugin-labels": "^1.1.0",
     "glightbox": "^3.2.0",
     "isotope-layout": "^3.0.6",
+    "moment": "^2.29.4",
     "ng2-charts": "^2.4.2",
     "remixicon": "^2.5.0",
     "rxjs": "~6.6.0",

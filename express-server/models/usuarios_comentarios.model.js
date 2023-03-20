@@ -70,7 +70,6 @@ UsuariosComentariosSchema.statics.getAllTest = function (data, cb) {
       {
         ComentarioCliente: 0,
         ComentarioConductor: 0,
-        FechaHoraRegistro: 0,
       },
       cb
     );
@@ -86,7 +85,6 @@ UsuariosComentariosSchema.statics.getAllTest = function (data, cb) {
       {
         ComentarioCliente: 0,
         ComentarioConductor: 0,
-        FechaHoraRegistro: 0,
       },
       cb
     );
